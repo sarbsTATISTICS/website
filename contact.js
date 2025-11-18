@@ -125,7 +125,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const today = new Date().toISOString().split('T')[0];
     document.getElementById('deadline').min = today;
     
-    // Add event listeners for plan selection
+    // Add event listeners for plan selection - FIXED VERSION
+    document.querySelectorAll('.plan-option').forEach(option => {
+        option.addEventListener('click', function(e) {
+            // Don't trigger if clicking on the radio button itself
+            if (e.target.type === 'radio') return;
+            
+            const radio = this.querySelector('input[type="radio"]');
+            if (radio) {
+                radio.checked = true;
+                selectedPlan = radio.value;
+                currentPlanConfig = planConfigs[selectedPlan];
+                updatePlanSelection();
+                updatePlanInformation();
+                updatePricing();
+            }
+        });
+    });
+    
+    // Also listen for direct radio button changes
     document.querySelectorAll('input[name="selectedPlan"]').forEach(radio => {
         radio.addEventListener('change', function() {
             selectedPlan = this.value;
@@ -140,7 +158,17 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('input[name="analysisType"]').forEach(checkbox => {
         checkbox.addEventListener('change', updatePricing);
     });
+
+    // Add event listeners for other form elements that affect pricing
+    document.querySelectorAll('#numTests, #numGraphs, #dataSize, #urgency, #reportType, #presentationType, #additionalSlides').forEach(element => {
+        element.addEventListener('change', updatePricing);
+    });
     
+    // Set form email when email field changes
+    document.getElementById('email').addEventListener('change', function() {
+        document.getElementById('form-email').value = this.value;
+    });
+
     // Initialize pricing
     updatePricing();
 });
@@ -149,12 +177,11 @@ document.addEventListener('DOMContentLoaded', function() {
 function updatePlanSelection() {
     document.querySelectorAll('.plan-option').forEach(option => {
         option.classList.remove('selected');
+        const radio = option.querySelector('input[type="radio"]');
+        if (radio && radio.checked) {
+            option.classList.add('selected');
+        }
     });
-    
-    const selectedOption = document.querySelector(`.plan-option[data-plan="${selectedPlan}"]`);
-    if (selectedOption) {
-        selectedOption.classList.add('selected');
-    }
 }
 
 // Update plan information based on selected plan
@@ -191,7 +218,6 @@ function updatePlanInformation() {
     document.getElementById('base-price-label').textContent = `Plan ${planDisplayNames[selectedPlan] || selectedPlan}:`;
 }
 
-// Update pricing based on user selections
 // Update pricing based on user selections
 function updatePricing() {
     let total = currentPlanConfig.basePrice;
@@ -286,6 +312,7 @@ function updatePricing() {
     window.currentTotal = total;
     window.currentPlan = selectedPlan;
 }
+
 // Update summary section
 function updateSummary() {
     // Personal info
@@ -329,6 +356,11 @@ function updateSummary() {
     // Plan and total price
     document.getElementById('summary-plan').textContent = planDisplayNames[window.currentPlan] || window.currentPlan;
     document.getElementById('summary-total-price').textContent = `${window.currentTotal || currentPlanConfig.basePrice} DA`;
+    
+    // Update hidden form fields for Formspree
+    document.getElementById('form-total-price').value = window.currentTotal || currentPlanConfig.basePrice;
+    document.getElementById('form-selected-plan').value = planDisplayNames[window.currentPlan] || window.currentPlan;
+    document.getElementById('form-email').value = document.getElementById('email').value;
 }
 
 // Navigation between steps
@@ -401,258 +433,23 @@ function isValidEmail(email) {
     return re.test(email);
 }
 
-// Generate email content from form data
-function generateEmailContent() {
-    const firstName = document.getElementById('firstName').value;
-    const lastName = document.getElementById('lastName').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
-    const institution = document.getElementById('institution').value;
-    const projectType = document.getElementById('projectType').options[document.getElementById('projectType').selectedIndex].text;
-    const projectTitle = document.getElementById('projectTitle').value;
-    const researchQuestion = document.getElementById('researchQuestion').value;
-    const deadline = document.getElementById('deadline').value;
-    const supervisorInfo = document.getElementById('supervisorInfo').value;
+// Handle form submission
+document.getElementById('analysis-request-form').addEventListener('submit', function(e) {
+    // Prevent default form submission
+    e.preventDefault();
     
-    const analysisTypes = Array.from(document.querySelectorAll('input[name="analysisType"]:checked'))
-        .map(cb => document.querySelector(`label[for="${cb.id}"]`).textContent)
-        .join(', ');
-        
-    const specificTests = document.getElementById('specificTests').value;
-    const numTests = document.getElementById('numTests').value;
-    const numGraphs = document.getElementById('numGraphs').value;
-    const softwarePreference = document.getElementById('softwarePreference').options[document.getElementById('softwarePreference').selectedIndex].text;
-    const dataDescription = document.getElementById('dataDescription').value;
-    const dataSize = document.getElementById('dataSize').options[document.getElementById('dataSize').selectedIndex].text;
-    const urgency = document.getElementById('urgency').options[document.getElementById('urgency').selectedIndex].text;
-    const additionalRequirements = document.getElementById('additionalRequirements').value;
-    const reportType = document.getElementById('reportType').options[document.getElementById('reportType').selectedIndex].text;
-    const codeDelivery = document.getElementById('codeDelivery').options[document.getElementById('codeDelivery').selectedIndex].text;
-    const presentationType = document.getElementById('presentationType').options[document.getElementById('presentationType').selectedIndex].text;
-    const additionalSlides = document.getElementById('additionalSlides').value;
-
-    let emailBody = `NOUVELLE DEMANDE D'ANALYSE DE DONNÉES\n\n`;
-    emailBody += `=== INFORMATIONS PERSONNELLES ===\n`;
-    emailBody += `Nom: ${firstName} ${lastName}\n`;
-    emailBody += `Email: ${email}\n`;
-    emailBody += `Téléphone: ${phone || 'Non fourni'}\n`;
-    emailBody += `Institution: ${institution || 'Non fournie'}\n\n`;
+    // Update summary one last time before submission
+    updateSummary();
     
-    emailBody += `=== DÉTAILS DU PROJET ===\n`;
-    emailBody += `Type de projet: ${projectType}\n`;
-    emailBody += `Titre: ${projectTitle}\n`;
-    emailBody += `Question de recherche: ${researchQuestion}\n`;
-    emailBody += `Délai souhaité: ${deadline || 'Non spécifié'}\n`;
-    emailBody += `Superviseur: ${supervisorInfo || 'Non spécifié'}\n\n`;
+    // Show success message
+    document.getElementById('step-4').classList.remove('active');
+    document.getElementById('success-message').classList.add('active');
     
-    emailBody += `=== EXIGENCES D'ANALYSE ===\n`;
-    emailBody += `Plan sélectionné: ${planDisplayNames[window.currentPlan] || window.currentPlan}\n`;
-    emailBody += `Types d'analyse: ${analysisTypes}\n`;
-    emailBody += `Tests spécifiques: ${specificTests || 'Non spécifié'}\n`;
-    emailBody += `Nombre de tests: ${numTests}\n`;
-    emailBody += `Nombre de graphiques: ${numGraphs}\n`;
-    emailBody += `Logiciel préféré: ${softwarePreference}\n`;
-    emailBody += `Taille des données: ${dataSize}\n`;
-    emailBody += `Niveau d'urgence: ${urgency}\n`;
-    emailBody += `Description des données: ${dataDescription || 'Non fournie'}\n`;
-    emailBody += `Exigences supplémentaires: ${additionalRequirements || 'Aucune'}\n\n`;
-    
-    emailBody += `=== PRIX ESTIMÉ ===\n`;
-    emailBody += `Prix total estimé: ${window.currentTotal || currentPlanConfig.basePrice} DA\n\n`;
-    
-    emailBody += `Date de soumission: ${new Date().toLocaleString('fr-FR')}\n`;
-    // Add these to the email body
-    emailBody += `Type de rapport: ${reportType}\n`;
-    emailBody += `Livraison du code: ${codeDelivery}\n`;
-    emailBody += `Présentation: ${presentationType}\n`;
-    if (additionalSlides > 0) {
-        emailBody += `Slides supplémentaires: ${additionalSlides}\n`;
-    }
-    
-    return emailBody;
-}
-
-// Submit form and open email client
-function submitForm() {
-    // Generate email content
-    const emailContent = generateEmailContent();
-    const projectTitle = document.getElementById('projectTitle').value;
-    
-    // Create email subject
-    const emailSubject = `Demande d'analyse - ${projectTitle || 'Nouveau projet'}`;
-    
-    // Your email address
-    const yourEmail = 'sarb5057@gmail.com';
-    
-    // Try to open the user's default email client
-    const mailtoLink = `mailto:${yourEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailContent)}`;
-    
-    // Open email client
-    window.location.href = mailtoLink;
-    
-    // Also show a success message with instructions
-    showEmailInstructions(emailContent);
-}
-
-// Show email instructions modal
-function showEmailInstructions(emailContent) {
-    // Create modal overlay
-    const modalOverlay = document.createElement('div');
-    modalOverlay.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.7);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
-        padding: 20px;
-    `;
-    
-    // Create modal content
-    const modalContent = document.createElement('div');
-    modalContent.style.cssText = `
-        background: white;
-        padding: 30px;
-        border-radius: 12px;
-        max-width: 600px;
-        width: 100%;
-        max-height: 80vh;
-        overflow-y: auto;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    `;
-    
-    modalContent.innerHTML = `
-        <div style="text-align: center; margin-bottom: 20px;">
-            <div style="width: 60px; height: 60px; border-radius: 50%; background: #059669; color: white; display: flex; align-items: center; justify-content: center; font-size: 24px; margin: 0 auto 15px;">✓</div>
-            <h2 style="color: #0f172a; margin: 0 0 10px;">Demande presque terminée!</h2>
-            <p style="color: #64748b; margin: 0;">Veuillez envoyer l'email suivant à sarb5057@gmail.com</p>
-        </div>
-        
-        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
-            <h3 style="color: #0f172a; margin: 0 0 15px; font-size: 16px;">Contenu de l'email à envoyer:</h3>
-            <div style="background: white; border: 1px solid #e2e8f0; border-radius: 6px; padding: 15px; font-family: monospace; font-size: 14px; white-space: pre-wrap; max-height: 300px; overflow-y: auto;">
-${emailContent}
-            </div>
-        </div>
-        
-        <div style="background: #dbeafe; border: 1px solid #2563eb; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
-            <h4 style="color: #1e40af; margin: 0 0 10px; font-size: 14px;">Instructions:</h4>
-            <ol style="color: #374151; margin: 0; padding-left: 20px; font-size: 14px;">
-                <li>Votre client email devrait s'ouvrir automatiquement</li>
-                <li>Vérifiez que l'adresse de destination est: <strong>sarb5057@gmail.com</strong></li>
-                <li>Ajoutez votre fichier de données en pièce jointe si nécessaire</li>
-                <li>Envoyez l'email</li>
-            </ol>
-        </div>
-        
-        <div style="display: flex; gap: 10px; justify-content: center;">
-            <button id="copyEmailBtn" style="background: #2563eb; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 600;">Copier le contenu</button>
-            <button id="closeModalBtn" style="background: #64748b; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 600;">Fermer</button>
-        </div>
-    `;
-    
-    modalOverlay.appendChild(modalContent);
-    document.body.appendChild(modalOverlay);
-    
-    // Add event listeners
-    document.getElementById('copyEmailBtn').addEventListener('click', function() {
-        navigator.clipboard.writeText(emailContent).then(function() {
-            const btn = document.getElementById('copyEmailBtn');
-            const originalText = btn.textContent;
-            btn.textContent = '✓ Copié!';
-            btn.style.background = '#059669';
-            setTimeout(() => {
-                btn.textContent = originalText;
-                btn.style.background = '#2563eb';
-            }, 2000);
-        });
-    });
-    
-    document.getElementById('closeModalBtn').addEventListener('click', function() {
-        document.body.removeChild(modalOverlay);
-        // Also show the original success message
-        document.getElementById('step-4').classList.remove('active');
-        document.getElementById('success-message').classList.add('active');
-    });
-    
-    // Close modal when clicking outside
-    modalOverlay.addEventListener('click', function(e) {
-        if (e.target === modalOverlay) {
-            document.body.removeChild(modalOverlay);
-            document.getElementById('step-4').classList.remove('active');
-            document.getElementById('success-message').classList.add('active');
-        }
-    });
-}
-// Initialize the form
-document.addEventListener('DOMContentLoaded', function() {
-    // Set the selected plan in the summary with proper display name
-    document.getElementById('summary-plan').textContent = planDisplayNames[selectedPlan] || selectedPlan;
-    
-    // Set initial plan selection
-    document.querySelector(`input[name="selectedPlan"][value="${selectedPlan}"]`).checked = true;
-    updatePlanSelection();
-    
-    // Update plan information
-    updatePlanInformation();
-    
-    // Set today as minimum date for deadline
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('deadline').min = today;
-    
-    // Add event listeners for plan selection - FIXED VERSION
-    document.querySelectorAll('.plan-option').forEach(option => {
-        option.addEventListener('click', function(e) {
-            // Don't trigger if clicking on the radio button itself
-            if (e.target.type === 'radio') return;
-            
-            const radio = this.querySelector('input[type="radio"]');
-            if (radio) {
-                radio.checked = true;
-                selectedPlan = radio.value;
-                currentPlanConfig = planConfigs[selectedPlan];
-                updatePlanSelection();
-                updatePlanInformation();
-                updatePricing();
-            }
-        });
-    });
-    
-    // Also listen for direct radio button changes
-    document.querySelectorAll('input[name="selectedPlan"]').forEach(radio => {
-        radio.addEventListener('change', function() {
-            selectedPlan = this.value;
-            currentPlanConfig = planConfigs[selectedPlan];
-            updatePlanSelection();
-            updatePlanInformation();
-            updatePricing();
-        });
-    });
-    
-    // Add event listeners for checkboxes to update pricing
-    document.querySelectorAll('input[name="analysisType"]').forEach(checkbox => {
-        checkbox.addEventListener('change', updatePricing);
-    });
-    
-    // Initialize pricing
-    updatePricing();
+    // Submit the form to Formspree
+    this.submit();
 });
 
-// Update plan selection visual state
-function updatePlanSelection() {
-    document.querySelectorAll('.plan-option').forEach(option => {
-        option.classList.remove('selected');
-        const radio = option.querySelector('input[type="radio"]');
-        if (radio && radio.checked) {
-            option.classList.add('selected');
-        }
-    });
-}
 // Redirect to home page
 function goHome() {
-    window.location.href = 'index.html'; // Adjust to your actual homepage URL
+    window.location.href = 'index.html';
 }
