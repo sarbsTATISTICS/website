@@ -41,458 +41,464 @@
         </div>
 
         <!-- Form Container -->
-        <div class="form-container">
-            <div class="form-header">
-                <h2>Demande d'Analyse de Données</h2>
-                <p>Remplissez ce formulaire pour que je puisse comprendre vos besoins et vous fournir un devis personnalisé</p>
-            </div>
-
-            <div class="form-body">
-                <!-- Step 1: Personal Information -->
-                <div class="form-section active" id="step-1">
-                    <h3 class="section-title">Informations personnelles</h3>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="firstName" class="required">Prénom</label>
-                            <input type="text" id="firstName" name="firstName" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="lastName" class="required">Nom</label>
-                            <input type="text" id="lastName" name="lastName" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email" class="required">Adresse e-mail</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="phone">Numéro de téléphone</label>
-                        <input type="tel" id="phone" name="phone">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="institution">Institution / Université</label>
-                        <input type="text" id="institution" name="institution">
-                    </div>
-                    
-                    <div class="form-footer">
-                        <div></div>
-                        <button class="btn" onclick="nextStep(1)">Suivant</button>
-                    </div>
+        <form id="analysis-request-form" action="https://formspree.io/f/xldzdqeo" method="POST">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Demande d'Analyse de Données</h2>
+                    <p>Remplissez ce formulaire pour que je puisse comprendre vos besoins et vous fournir un devis personnalisé</p>
                 </div>
 
-                <!-- Step 2: Project Details -->
-                <div class="form-section" id="step-2">
-                    <h3 class="section-title">Détails du projet</h3>
-                    
-                    <div class="form-group">
-                        <label for="projectType" class="required">Type de projet</label>
-                        <select id="projectType" name="projectType" required>
-                            <option value="">Sélectionnez un type</option>
-                            <option value="master">Mémoire de Master</option>
-                            <option value="phd">Thèse de Doctorat</option>
-                            <option value="article">Article scientifique</option>
-                            <option value="professional">Projet professionnel</option>
-                            <option value="other">Autre</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="projectTitle" class="required">Titre du projet</label>
-                        <input type="text" id="projectTitle" name="projectTitle" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="researchQuestion" class="required">Question de recherche / Objectif</label>
-                        <textarea id="researchQuestion" name="researchQuestion" required></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="deadline">Délai souhaité</label>
-                        <input type="date" id="deadline" name="deadline">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="supervisorInfo">Informations sur le superviseur (le cas échéant)</label>
-                        <input type="text" id="supervisorInfo" name="supervisorInfo" placeholder="Nom, contact, exigences particulières">
-                    </div>
-                    
-                    <div class="form-footer">
-                        <button class="btn btn-secondary" onclick="prevStep(2)">Précédent</button>
-                        <button class="btn" onclick="nextStep(2)">Suivant</button>
-                    </div>
-                </div>
-
-                <!-- Step 3: Analysis Requirements -->
-                <div class="form-section" id="step-3">
-                    <!-- Plan Selection Section -->
-                    <div class="plan-selection">
-                        <h3 class="section-title">Choisissez Votre Plan</h3>
-                        <p class="section-subtitle">Sélectionnez le forfait qui correspond le mieux à vos besoins</p>
+                <div class="form-body">
+                    <!-- Step 1: Personal Information -->
+                    <div class="form-section active" id="step-1">
+                        <h3 class="section-title">Informations personnelles</h3>
                         
-                        <div class="plan-options">
-                            <div class="plan-option" data-plan="Essentiel">
-                                <div class="plan-radio">
-                                    <input type="radio" id="plan-essentiel" name="selectedPlan" value="Essentiel" checked>
-                                    <label for="plan-essentiel"></label>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName" class="required">Prénom</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName" class="required">Nom</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="required">Adresse e-mail</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Numéro de téléphone</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="institution">Institution / Université</label>
+                            <input type="text" id="institution" name="institution">
+                        </div>
+                        
+                        <div class="form-footer">
+                            <div></div>
+                            <button type="button" class="btn" onclick="nextStep(1)">Suivant</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Project Details -->
+                    <div class="form-section" id="step-2">
+                        <h3 class="section-title">Détails du projet</h3>
+                        
+                        <div class="form-group">
+                            <label for="projectType" class="required">Type de projet</label>
+                            <select id="projectType" name="projectType" required>
+                                <option value="">Sélectionnez un type</option>
+                                <option value="master">Mémoire de Master</option>
+                                <option value="phd">Thèse de Doctorat</option>
+                                <option value="article">Article scientifique</option>
+                                <option value="professional">Projet professionnel</option>
+                                <option value="other">Autre</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="projectTitle" class="required">Titre du projet</label>
+                            <input type="text" id="projectTitle" name="projectTitle" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="researchQuestion" class="required">Question de recherche / Objectif</label>
+                            <textarea id="researchQuestion" name="researchQuestion" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="deadline">Délai souhaité</label>
+                            <input type="date" id="deadline" name="deadline">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="supervisorInfo">Informations sur le superviseur (le cas échéant)</label>
+                            <input type="text" id="supervisorInfo" name="supervisorInfo" placeholder="Nom, contact, exigences particulières">
+                        </div>
+                        
+                        <div class="form-footer">
+                            <button type="button" class="btn btn-secondary" onclick="prevStep(2)">Précédent</button>
+                            <button type="button" class="btn" onclick="nextStep(2)">Suivant</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Analysis Requirements -->
+                    <div class="form-section" id="step-3">
+                        <!-- Plan Selection Section -->
+                        <div class="plan-selection">
+                            <h3 class="section-title">Choisissez Votre Plan</h3>
+                            <p class="section-subtitle">Sélectionnez le forfait qui correspond le mieux à vos besoins</p>
+                            
+                            <div class="plan-options">
+                                <div class="plan-option" data-plan="Essentiel">
+                                    <div class="plan-radio">
+                                        <input type="radio" id="plan-essentiel" name="selectedPlan" value="Essentiel" checked>
+                                        <label for="plan-essentiel"></label>
+                                    </div>
+                                    <div class="plan-content">
+                                        <h4>Essentiel</h4>
+                                        <div class="plan-price">5000 DA</div>
+                                        <ul class="plan-features-list">
+                                            <li>Statistiques descriptives</li>
+                                            <li>3 tests statistiques inclus</li>
+                                            <li>5 graphiques inclus</li>
+                                            <li>≤ 1000 observations</li>
+                                            <li>Rapport d'analyse complet</li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="plan-content">
-                                    <h4>Essentiel</h4>
-                                    <div class="plan-price">5000 DA</div>
-                                    <ul class="plan-features-list">
-                                        <li>Statistiques descriptives</li>
-                                        <li>3 tests statistiques inclus</li>
-                                        <li>5 graphiques inclus</li>
-                                        <li>≤ 1000 observations</li>
-                                        <li>Rapport d'analyse complet</li>
-                                    </ul>
+                                
+                                <div class="plan-option popular" data-plan="Avance">
+                                    <div class="popular-badge">Le plus populaire</div>
+                                    <div class="plan-radio">
+                                        <input type="radio" id="plan-avance" name="selectedPlan" value="Avance">
+                                        <label for="plan-avance"></label>
+                                    </div>
+                                    <div class="plan-content">
+                                        <h4>Avancé</h4>
+                                        <div class="plan-price">9500 DA</div>
+                                        <ul class="plan-features-list">
+                                            <li>Tout le plan Essentiel</li>
+                                            <li>8 tests statistiques inclus</li>
+                                            <li>10 graphiques inclus</li>
+                                            <li>≤ 5000 observations</li>
+                                            <li>Analyses multivariées</li>
+                                            <li>Rapport détaillé </li>
+                                        </ul>
+                                    </div>
                                 </div>
+                                
+                                <div class="plan-option" data-plan="Complet">
+                                    <div class="plan-radio">
+                                        <input type="radio" id="plan-complet" name="selectedPlan" value="Complet">
+                                        <label for="plan-complet"></label>
+                                    </div>
+                                    <div class="plan-content">
+                                        <h4>Complet</h4>
+                                        <div class="plan-price">25000 DA</div>
+                                        <ul class="plan-features-list">
+                                            <li>Tout le plan Avancé</li>
+                                            <li>Tests statistiques illimités</li>
+                                            <li>Graphiques illimités</li>
+                                            <li>Jeu de données illimité</li>
+                                            <li>Machine Learning inclus</li>
+                                            <li>Support jusqu'à soutenance</li>
+                                            <li>Révisions illimitées</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Selected Plan Info -->
+                        <div class="selected-plan-info">
+                            <div class="plan-header">
+                                <h4>Plan Sélectionné: <span id="selected-plan-name">Essentiel</span></h4>
+                                <div class="plan-base-price" id="selected-plan-price">5000 DA</div>
+                            </div>
+                            <div class="plan-features">
+                                <div class="plan-feature">
+                                    <span class="feature-icon">✓</span>
+                                    <span class="feature-text">Statistiques descriptives</span>
+                                </div>
+                                <div class="plan-feature">
+                                    <span class="feature-icon">✓</span>
+                                    <span class="feature-text" id="included-tests">3 tests statistiques inclus</span>
+                                </div>
+                                <div class="plan-feature">
+                                    <span class="feature-icon">✓</span>
+                                    <span class="feature-text" id="included-graphs">5 graphiques inclus</span>
+                                </div>
+                                <div class="plan-feature">
+                                    <span class="feature-icon">✓</span>
+                                    <span class="feature-text" id="included-data">≤ 1000 observations</span>
+                                </div>
+                                <div class="plan-feature">
+                                    <span class="feature-icon">✓</span>
+                                    <span class="feature-text">Rapport d'analyse complet</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="section-title">Exigences d'analyse</h3>
+                        
+                        <div class="form-group">
+                            <label class="required">Type d'analyse souhaitée</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="analysis_descriptive" name="analysisType" value="descriptive" data-price="0">
+                                    <label for="analysis_descriptive">Statistiques descriptives</label>
+                                    <span class="price-tag">Inclus</span>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="analysis_inferential" name="analysisType" value="inferential" data-price="500">
+                                    <label for="analysis_inferential">Tests statistiques inférentiels</label>
+                                    <span class="price-tag">+500 DA</span>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="analysis_regression" name="analysisType" value="regression" data-price="800">
+                                    <label for="analysis_regression">Analyses de régression</label>
+                                    <span class="price-tag">+800 DA</span>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="analysis_multivariate" name="analysisType" value="multivariate" data-price="1200">
+                                    <label for="analysis_multivariate">Analyses multivariées</label>
+                                    <span class="price-tag">+1200 DA</span>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="analysis_ml" name="analysisType" value="ml" data-price="2000">
+                                    <label for="analysis_ml">Machine Learning</label>
+                                    <span class="price-tag">+2000 DA</span>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="analysis_other" name="analysisType" value="other" data-price="0">
+                                    <label for="analysis_other">Autre (précisez ci-dessous)</label>
+                                    <span class="price-tag">Sur devis</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="numTests">Nombre de tests statistiques</label>
+                                <input type="number" id="numTests" name="numTests" min="0" value="0" onchange="updatePricing()">
+                                <small class="price-info" id="tests-info">500 DA par test au-delà de 3 tests inclus</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="numGraphs">Nombre de graphiques</label>
+                                <input type="number" id="numGraphs" name="numGraphs" min="0" value="0" onchange="updatePricing()">
+                                <small class="price-info" id="graphs-info">300 DA par graphique au-delà de 5 inclus</small>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="specificTests">Tests statistiques spécifiques requis</label>
+                            <textarea id="specificTests" name="specificTests" placeholder="Ex: ANOVA, test t, chi-carré, régression logistique..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="softwarePreference">Logiciel préféré</label>
+                            <select id="softwarePreference" name="softwarePreference">
+                                <option value="">Aucune préférence</option>
+                                <option value="python">Python</option>
+                                <option value="r">R</option>
+                                <option value="other">Autre</option>
+                            </select>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="reportType">Type de rapport</label>
+                                <select id="reportType" name="reportType" onchange="updatePricing()">
+                                    <option value="word" data-price="0">Word</option>
+                                    <option value="latex" data-price="500">LaTeX + PDF</option>
+                                </select>
                             </div>
                             
-                            <div class="plan-option popular" data-plan="Avance">
-                                <div class="popular-badge">Le plus populaire</div>
-                                <div class="plan-radio">
-                                    <input type="radio" id="plan-avance" name="selectedPlan" value="Avance">
-                                    <label for="plan-avance"></label>
+                            <div class="form-group">
+                                <label for="codeDelivery">Livraison du code</label>
+                                <select id="codeDelivery" name="codeDelivery" onchange="updatePricing()">
+                                    <option value="none" data-price="0">Pas nécessaire</option>
+                                    <option value="python" data-price="0">Python</option>
+                                    <option value="r" data-price="0">R</option>
+                                    <option value="jupyter" data-price="0">Jupyter Notebook</option>
+                                    <option value="spss" data-price="0">SPSS</option>
+                                    <option value="stata" data-price="0">STATA</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="presentationType">Présentation</label>
+                            <select id="presentationType" name="presentationType" onchange="updatePricing()">
+                                <option value="none" data-price="0">Aucune présentation</option>
+                                <option value="professional" data-price="2000">Professionnelle (10 slides) - 2000 DA</option>
+                                <option value="latex" data-price="1000">LaTeX (10 slides) - 1000 DA</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" id="additionalSlidesGroup" style="display: none;">
+                            <label for="additionalSlides">Slides supplémentaires (par lot de 5)</label>
+                            <select id="additionalSlides" name="additionalSlides" onchange="updatePricing()">
+                                <option value="0" data-price="0">0 slides supplémentaires</option>
+                                <option value="5" data-price="1000">+5 slides - 1000 DA</option>
+                                <option value="10" data-price="2000">+10 slides - 2000 DA</option>
+                                <option value="15" data-price="3000">+15 slides - 3000 DA</option>
+                                <option value="20" data-price="4000">+20 slides - 4000 DA</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dataDescription">Description des données</label>
+                            <textarea id="dataDescription" name="dataDescription" placeholder="Nombre d'observations, variables, type de données, problèmes connus..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dataSize">Taille du jeu de données</label>
+                            <select id="dataSize" name="dataSize" onchange="updatePricing()">
+                                <option value="small" data-price="0">≤ 1000 observations</option>
+                                <option value="medium" data-price="1500">1001 - 5000 observations</option>
+                                <option value="large" data-price="3000">5001 - 10000 observations</option>
+                                <option value="xlarge" data-price="5000">+10000 observations</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="urgency">Niveau d'urgence</label>
+                            <select id="urgency" name="urgency" onchange="updatePricing()">
+                                <option value="normal" data-price="0">Standard (7-10 jours)</option>
+                                <option value="urgent" data-price="2000">Urgent (3-5 jours)</option>
+                                <option value="express" data-price="4000">Express (1-2 jours)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="additionalRequirements">Exigences supplémentaires</label>
+                            <textarea id="additionalRequirements" name="additionalRequirements" placeholder="Format de livrable, style de graphiques, exigences particulières..."></textarea>
+                        </div>
+                        
+                        <!-- Pricing summary section -->
+                        <div class="pricing-summary">
+                            <h4>Récapitulatif du prix</h4>
+                            <div class="price-breakdown">
+                                <div class="price-item">
+                                    <span class="price-label" id="base-price-label">Plan Essentiel:</span>
+                                    <span class="price-amount" id="base-price">5000 DA</span>
                                 </div>
-                                <div class="plan-content">
-                                    <h4>Avancé</h4>
-                                    <div class="plan-price">9500 DA</div>
-                                    <ul class="plan-features-list">
-                                        <li>Tout le plan Essentiel</li>
-                                        <li>8 tests statistiques inclus</li>
-                                        <li>10 graphiques inclus</li>
-                                        <li>≤ 5000 observations</li>
-                                        <li>Analyses multivariées</li>
-                                        <li>Rapport détaillé </li>
-                                    </ul>
+                                <div class="price-item">
+                                    <span class="price-label">Analyses supplémentaires:</span>
+                                    <span class="price-amount" id="analysis-price">0 DA</span>
                                 </div>
+                                <div class="price-item">
+                                    <span class="price-label">Tests supplémentaires:</span>
+                                    <span class="price-amount" id="tests-price">0 DA</span>
+                                </div>
+                                <div class="price-item">
+                                    <span class="price-label">Graphiques supplémentaires:</span>
+                                    <span class="price-amount" id="graphs-price">0 DA</span>
+                                </div>
+                                <div class="price-item">
+                                    <span class="price-label">Taille des données:</span>
+                                    <span class="price-amount" id="data-price">0 DA</span>
+                                </div>
+                                <div class="price-item">
+                                    <span class="price-label">Urgence:</span>
+                                    <span class="price-amount" id="urgency-price">0 DA</span>
+                                </div>
+                                <div class="price-item">
+                                    <span class="price-label">Type de rapport:</span>
+                                    <span class="price-amount" id="report-price">0 DA</span>
+                                </div>
+                                <div class="price-item">
+                                    <span class="price-label">Présentation:</span>
+                                    <span class="price-amount" id="presentation-price">0 DA</span>
+                                </div>
+                                <div class="price-item">
+                                    <span class="price-label">Slides supplémentaires:</span>
+                                    <span class="price-amount" id="additional-slides-price">0 DA</span>
+                                </div>
+                                <div class="price-total">
+                                    <span class="total-label">Total estimé:</span>
+                                    <span class="total-amount" id="total-price">5000 DA</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-footer">
+                            <button type="button" class="btn btn-secondary" onclick="prevStep(3)">Précédent</button>
+                            <button type="button" class="btn" onclick="nextStep(3)">Suivant</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Confirmation -->
+                    <div class="form-section" id="step-4">
+                        <h3 class="section-title">Confirmation de votre demande</h3>
+                        
+                        <div class="summary-section">
+                            <h3>Résumé de votre demande</h3>
+                            
+                            <div class="summary-item">
+                                <div class="summary-label">Plan sélectionné</div>
+                                <div class="summary-value"><span class="plan-badge" id="summary-plan">Essentiel</span></div>
                             </div>
                             
-                            <div class="plan-option" data-plan="Complet">
-                                <div class="plan-radio">
-                                    <input type="radio" id="plan-complet" name="selectedPlan" value="Complet">
-                                    <label for="plan-complet"></label>
-                                </div>
-                                <div class="plan-content">
-                                    <h4>Complet</h4>
-                                    <div class="plan-price">25000 DA</div>
-                                    <ul class="plan-features-list">
-                                        <li>Tout le plan Avancé</li>
-                                        <li>Tests statistiques illimités</li>
-                                        <li>Graphiques illimités</li>
-                                        <li>Jeu de données illimité</li>
-                                        <li>Machine Learning inclus</li>
-                                        <li>Support jusqu'à soutenance</li>
-                                        <li>Révisions illimitées</li>
-                                    </ul>
-                                </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Nom</div>
+                                <div class="summary-value" id="summary-name"></div>
                             </div>
+                            
+                            <div class="summary-item">
+                                <div class="summary-label">E-mail</div>
+                                <div class="summary-value" id="summary-email"></div>
+                            </div>
+                            
+                            <div class="summary-item">
+                                <div class="summary-label">Type de projet</div>
+                                <div class="summary-value" id="summary-project-type"></div>
+                            </div>
+                            
+                            <div class="summary-item">
+                                <div class="summary-label">Titre du projet</div>
+                                <div class="summary-value" id="summary-project-title"></div>
+                            </div>
+                            
+                            <div class="summary-item">
+                                <div class="summary-label">Question de recherche</div>
+                                <div class="summary-value" id="summary-research-question"></div>
+                            </div>
+                            
+                            <div class="summary-item">
+                                <div class="summary-label">Types d'analyse</div>
+                                <div class="summary-value" id="summary-analysis-types"></div>
+                            </div>
+                            
+                            <div class="summary-item">
+                                <div class="summary-label">Logiciel préféré</div>
+                                <div class="summary-value" id="summary-software"></div>
+                            </div>
+                            
+                            <div class="summary-item">
+                                <div class="summary-label">Délai souhaité</div>
+                                <div class="summary-value" id="summary-deadline"></div>
+                            </div>
+                            
+                            <div class="summary-item">
+                                <div class="summary-label">Prix total estimé</div>
+                                <div class="summary-value total-price" id="summary-total-price">5000 DA</div>
+                            </div>
+                        </div>
+
+                        <!-- Hidden fields for Formspree -->
+                        <input type="hidden" name="_subject" value="Nouvelle demande d'analyse de données">
+                        <input type="hidden" name="_replyto" id="form-email">
+                        <input type="hidden" name="total_price" id="form-total-price">
+                        <input type="hidden" name="selected_plan" id="form-selected-plan">
+                        <input type="hidden" name="_captcha" value="false">
+                        
+                        <div class="form-footer">
+                            <button type="button" class="btn btn-secondary" onclick="prevStep(4)">Précédent</button>
+                            <button type="submit" class="btn btn-success">
+                                <span>Envoyer la demande</span>
+                            </button>
                         </div>
                     </div>
 
-                    <!-- Selected Plan Info -->
-                    <div class="selected-plan-info">
-                        <div class="plan-header">
-                            <h4>Plan Sélectionné: <span id="selected-plan-name">Essentiel</span></h4>
-                            <div class="plan-base-price" id="selected-plan-price">5000 DA</div>
-                        </div>
-                        <div class="plan-features">
-                            <div class="plan-feature">
-                                <span class="feature-icon">✓</span>
-                                <span class="feature-text">Statistiques descriptives</span>
-                            </div>
-                            <div class="plan-feature">
-                                <span class="feature-icon">✓</span>
-                                <span class="feature-text" id="included-tests">3 tests statistiques inclus</span>
-                            </div>
-                            <div class="plan-feature">
-                                <span class="feature-icon">✓</span>
-                                <span class="feature-text" id="included-graphs">5 graphiques inclus</span>
-                            </div>
-                            <div class="plan-feature">
-                                <span class="feature-icon">✓</span>
-                                <span class="feature-text" id="included-data">≤ 1000 observations</span>
-                            </div>
-                            <div class="plan-feature">
-                                <span class="feature-icon">✓</span>
-                                <span class="feature-text">Rapport d'analyse complet</span>
-                            </div>
-                        </div>
+                    <!-- Success Message -->
+                    <div class="success-message" id="success-message">
+                        <div class="success-icon">✓</div>
+                        <h2>Demande envoyée avec succès!</h2>
+                        <p>J'ai bien reçu votre demande d'analyse et je vous contacterai dans les 24 heures pour discuter des prochaines étapes.</p>
+                        <p>En attendant, vous pouvez préparer votre jeu de données si vous ne l'avez pas encore fait.</p>
+                        <button type="button" class="btn" onclick="goHome()">Retour à l'accueil</button>
                     </div>
-
-                    <h3 class="section-title">Exigences d'analyse</h3>
-                    
-                    <div class="form-group">
-                        <label class="required">Type d'analyse souhaitée</label>
-                        <div class="checkbox-group">
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="analysis_descriptive" name="analysisType" value="descriptive" data-price="0">
-                                <label for="analysis_descriptive">Statistiques descriptives</label>
-                                <span class="price-tag">Inclus</span>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="analysis_inferential" name="analysisType" value="inferential" data-price="500">
-                                <label for="analysis_inferential">Tests statistiques inférentiels</label>
-                                <span class="price-tag">+500 DA</span>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="analysis_regression" name="analysisType" value="regression" data-price="800">
-                                <label for="analysis_regression">Analyses de régression</label>
-                                <span class="price-tag">+800 DA</span>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="analysis_multivariate" name="analysisType" value="multivariate" data-price="1200">
-                                <label for="analysis_multivariate">Analyses multivariées</label>
-                                <span class="price-tag">+1200 DA</span>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="analysis_ml" name="analysisType" value="ml" data-price="2000">
-                                <label for="analysis_ml">Machine Learning</label>
-                                <span class="price-tag">+2000 DA</span>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="analysis_other" name="analysisType" value="other" data-price="0">
-                                <label for="analysis_other">Autre (précisez ci-dessous)</label>
-                                <span class="price-tag">Sur devis</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="numTests">Nombre de tests statistiques</label>
-                            <input type="number" id="numTests" name="numTests" min="0" value="0" onchange="updatePricing()">
-                            <small class="price-info" id="tests-info">500 DA par test au-delà de 3 tests inclus</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="numGraphs">Nombre de graphiques</label>
-                            <input type="number" id="numGraphs" name="numGraphs" min="0" value="0" onchange="updatePricing()">
-                            <small class="price-info" id="graphs-info">300 DA par graphique au-delà de 5 inclus</small>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="specificTests">Tests statistiques spécifiques requis</label>
-                        <textarea id="specificTests" name="specificTests" placeholder="Ex: ANOVA, test t, chi-carré, régression logistique..."></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="softwarePreference">Logiciel préféré</label>
-                        <select id="softwarePreference" name="softwarePreference">
-                            <option value="">Aucune préférence</option>
-                            <option value="python">Python</option>
-                            <option value="r">R</option>
-                            <option value="other">Autre</option>
-                        </select>
-                    </div>
-                    <!-- Add after the softwarePreference section -->
-
-<div class="form-row">
-    <div class="form-group">
-        <label for="reportType">Type de rapport</label>
-        <select id="reportType" name="reportType" onchange="updatePricing()">
-            <option value="word" data-price="0">Word</option>
-            <option value="latex" data-price="500">LaTeX + PDF</option>
-        </select>
-    </div>
-    
-    <div class="form-group">
-        <label for="codeDelivery">Livraison du code</label>
-        <select id="codeDelivery" name="codeDelivery" onchange="updatePricing()">
-            <option value="none" data-price="0">Pas nécessaire</option>
-            <option value="python" data-price="0">Python</option>
-            <option value="r" data-price="0">R</option>
-            <option value="jupyter" data-price="0">Jupyter Notebook</option>
-            <option value="spss" data-price="0">SPSS</option>
-            <option value="stata" data-price="0">STATA</option>
-        </select>
-    </div>
-</div>
-
-<!-- Add after the urgency section -->
-
-<div class="form-group">
-    <label for="presentationType">Présentation</label>
-    <select id="presentationType" name="presentationType" onchange="updatePricing()">
-        <option value="none" data-price="0">Aucune présentation</option>
-        <option value="professional" data-price="2000">Professionnelle (10 slides) - 2000 DA</option>
-        <option value="latex" data-price="1000">LaTeX (10 slides) - 1000 DA</option>
-    </select>
-</div>
-
-<div class="form-group" id="additionalSlidesGroup" style="display: none;">
-    <label for="additionalSlides">Slides supplémentaires (par lot de 5)</label>
-    <select id="additionalSlides" name="additionalSlides" onchange="updatePricing()">
-        <option value="0" data-price="0">0 slides supplémentaires</option>
-        <option value="5" data-price="1000">+5 slides - 1000 DA</option>
-        <option value="10" data-price="2000">+10 slides - 2000 DA</option>
-        <option value="15" data-price="3000">+15 slides - 3000 DA</option>
-        <option value="20" data-price="4000">+20 slides - 4000 DA</option>
-    </select>
-</div>
-                    <div class="form-group">
-                        <label for="dataDescription">Description des données</label>
-                        <textarea id="dataDescription" name="dataDescription" placeholder="Nombre d'observations, variables, type de données, problèmes connus..."></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="dataSize">Taille du jeu de données</label>
-                        <select id="dataSize" name="dataSize" onchange="updatePricing()">
-                            <option value="small" data-price="0">≤ 1000 observations</option>
-                            <option value="medium" data-price="1500">1001 - 5000 observations</option>
-                            <option value="large" data-price="3000">5001 - 10000 observations</option>
-                            <option value="xlarge" data-price="5000">+10000 observations</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="urgency">Niveau d'urgence</label>
-                        <select id="urgency" name="urgency" onchange="updatePricing()">
-                            <option value="normal" data-price="0">Standard (7-10 jours)</option>
-                            <option value="urgent" data-price="2000">Urgent (3-5 jours)</option>
-                            <option value="express" data-price="4000">Express (1-2 jours)</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="additionalRequirements">Exigences supplémentaires</label>
-                        <textarea id="additionalRequirements" name="additionalRequirements" placeholder="Format de livrable, style de graphiques, exigences particulières..."></textarea>
-                    </div>
-                    
-                    <!-- Update the pricing summary section -->
-<div class="pricing-summary">
-    <h4>Récapitulatif du prix</h4>
-    <div class="price-breakdown">
-        <div class="price-item">
-            <span class="price-label" id="base-price-label">Plan Essentiel:</span>
-            <span class="price-amount" id="base-price">5000 DA</span>
-        </div>
-        <div class="price-item">
-            <span class="price-label">Analyses supplémentaires:</span>
-            <span class="price-amount" id="analysis-price">0 DA</span>
-        </div>
-        <div class="price-item">
-            <span class="price-label">Tests supplémentaires:</span>
-            <span class="price-amount" id="tests-price">0 DA</span>
-        </div>
-        <div class="price-item">
-            <span class="price-label">Graphiques supplémentaires:</span>
-            <span class="price-amount" id="graphs-price">0 DA</span>
-        </div>
-        <div class="price-item">
-            <span class="price-label">Taille des données:</span>
-            <span class="price-amount" id="data-price">0 DA</span>
-        </div>
-        <div class="price-item">
-            <span class="price-label">Urgence:</span>
-            <span class="price-amount" id="urgency-price">0 DA</span>
-        </div>
-        <!-- Add these new price items -->
-        <div class="price-item">
-            <span class="price-label">Type de rapport:</span>
-            <span class="price-amount" id="report-price">0 DA</span>
-        </div>
-        <div class="price-item">
-            <span class="price-label">Présentation:</span>
-            <span class="price-amount" id="presentation-price">0 DA</span>
-        </div>
-        <div class="price-item">
-            <span class="price-label">Slides supplémentaires:</span>
-            <span class="price-amount" id="additional-slides-price">0 DA</span>
-        </div>
-        <div class="price-total">
-            <span class="total-label">Total estimé:</span>
-            <span class="total-amount" id="total-price">5000 DA</span>
-        </div>
-    </div>
-</div>
-                    
-                    <div class="form-footer">
-                        <button class="btn btn-secondary" onclick="prevStep(3)">Précédent</button>
-                        <button class="btn" onclick="nextStep(3)">Suivant</button>
-                    </div>
-                </div>
-
-                <!-- Step 4: Confirmation -->
-                <div class="form-section" id="step-4">
-                    <h3 class="section-title">Confirmation de votre demande</h3>
-                    
-                    <div class="summary-section">
-                        <h3>Résumé de votre demande</h3>
-                        
-                        <div class="summary-item">
-                            <div class="summary-label">Plan sélectionné</div>
-                            <div class="summary-value"><span class="plan-badge" id="summary-plan">Essentiel</span></div>
-                        </div>
-                        
-                        <div class="summary-item">
-                            <div class="summary-label">Nom</div>
-                            <div class="summary-value" id="summary-name"></div>
-                        </div>
-                        
-                        <div class="summary-item">
-                            <div class="summary-label">E-mail</div>
-                            <div class="summary-value" id="summary-email"></div>
-                        </div>
-                        
-                        <div class="summary-item">
-                            <div class="summary-label">Type de projet</div>
-                            <div class="summary-value" id="summary-project-type"></div>
-                        </div>
-                        
-                        <div class="summary-item">
-                            <div class="summary-label">Titre du projet</div>
-                            <div class="summary-value" id="summary-project-title"></div>
-                        </div>
-                        
-                        <div class="summary-item">
-                            <div class="summary-label">Question de recherche</div>
-                            <div class="summary-value" id="summary-research-question"></div>
-                        </div>
-                        
-                        <div class="summary-item">
-                            <div class="summary-label">Types d'analyse</div>
-                            <div class="summary-value" id="summary-analysis-types"></div>
-                        </div>
-                        
-                        <div class="summary-item">
-                            <div class="summary-label">Logiciel préféré</div>
-                            <div class="summary-value" id="summary-software"></div>
-                        </div>
-                        
-                        <div class="summary-item">
-                            <div class="summary-label">Délai souhaité</div>
-                            <div class="summary-value" id="summary-deadline"></div>
-                        </div>
-                        
-                        <div class="summary-item">
-                            <div class="summary-label">Prix total estimé</div>
-                            <div class="summary-value total-price" id="summary-total-price">5000 DA</div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-footer">
-                        <button class="btn btn-secondary" onclick="prevStep(4)">Précédent</button>
-                        <button class="btn btn-success" onclick="submitForm()">
-                            <span>Envoyer la demande</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Success Message -->
-                <div class="success-message" id="success-message">
-                    <div class="success-icon">✓</div>
-                    <h2>Demande envoyée avec succès!</h2>
-                    <p>J'ai bien reçu votre demande d'analyse et je vous contacterai dans les 24 heures pour discuter des prochaines étapes.</p>
-                    <p>En attendant, vous pouvez préparer votre jeu de données si vous ne l'avez pas encore fait.</p>
-                    <button class="btn" onclick="goHome()">Retour à l'accueil</button>
                 </div>
             </div>
-        </div>
+        </form>
     </main>
 
     <footer>
