@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Analyse de données professionnelle — Sabrina, PhD</title>
+<meta name="description" content="Étude statistique complète pour thèse, mémoire ou article. PhD en Data Mining — Python, R, STATA, SPSS. À partir de 5000 DA." />
+
+<!-- Google fonts fallback: system fonts used to avoid external calls -->
+<style>
+  :root{
+    --bg:#0f3b3b;
+    --card:#0e2f2f;
+    --accent:#ffd966;
+    --muted:#cfe6e6;
+    --white:#ffffff;
+    --glass: rgba(255,255,255,0.04);
+    --radius:14px;
+    --container:1100px;
+    --shadow: 0 10px 30px rgba(0,0,0,0.35);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;background:linear-gradient(180deg,#0f3b3b 0%, #083434 100%);color:var(--muted);-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none}
+  header{position:sticky;top:0;z-index:40;background:linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.06));backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.02)}
+  .nav{max-width:var(--container);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
+  .brand{display:flex;gap:14px;align-items:center}
+  .logo{width:44px;height:44px;border-radius:10px;background:var(--accent);display:grid;place-items:center;color:#002a2a;font-weight:700}
+  .brand h1{margin:0;font-size:1rem;color:var(--white);letter-spacing:0.4px}
+  nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+  nav li a{color:var(--muted);font-size:0.95rem;padding:8px;border-radius:8px}
+  nav li a:hover{background:var(--glass);color:var(--white)}
+  .cta{background:var(--accent);color:#002a2a;padding:10px 14px;border-radius:10px;font-weight:700}
+  .container{max-width:var(--container);margin:0 auto;padding:48px 20px}
+
+  /* Hero */
+  .hero{display:grid;grid-template-columns:1fr 520px;gap:48px;align-items:center;padding:32px 0}
+  .hero-left{}
+  .kicker{display:inline-block;padding:8px 12px;background:rgba(255,217,102,0.08);color:var(--accent);border-radius:999px;margin-bottom:14px;font-weight:700;font-size:0.9rem}
+  h2{font-size:2.4rem;color:var(--white);margin:8px 0 12px;line-height:1.05}
+  p.lead{font-size:1.05rem;color:#d6ecec;margin:0 0 18px}
+  .price-badge{display:inline-block;margin-top:14px;background:rgba(0,0,0,0.18);padding:12px 16px;border-radius:12px;color:var(--accent);font-weight:800;font-size:1.05rem}
+
+  /* right card with badges */
+  .hero-right{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:22px;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid rgba(255,255,255,0.02)}
+  .hero-right h3{color:var(--white);margin:0 0 6px}
+  .badges{display:flex;gap:12px;margin-top:14px;align-items:center;flex-wrap:wrap}
+  .badge{display:flex;gap:10px;align-items:center;padding:8px 12px;background:rgba(255,255,255,0.03);border-radius:10px}
+  .badge svg{width:34px;height:34px}
+
+  /* sections */
+  section{padding:44px 0;border-top:1px solid rgba(255,255,255,0.02)}
+  .grid-2{display:grid;grid-template-columns:1fr 420px;gap:34px;align-items:start}
+  .card{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+  h3.section-title{color:var(--white);margin:0 0 12px;font-size:1.4rem}
+  ul.check{list-style:none;padding:0;margin:0}
+  ul.check li{position:relative;padding-left:28px;margin-bottom:10px;color:#d7efef}
+  ul.check li:before{content:"";position:absolute;left:0;top:6px;width:18px;height:18px;background:var(--accent);border-radius:4px}
+
+  /* methods grid */
+  .methods{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .method{padding:14px;border-radius:10px;background:rgba(255,255,255,0.02);color:#dceeee}
+  .tools{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px}
+  .tool-pill{background:rgba(255,255,255,0.03);padding:8px 12px;border-radius:999px;color:var(--muted);font-weight:700}
+
+  /* packages */
+  .packs{display:flex;gap:18px;flex-wrap:wrap;margin-top:18px}
+  .pack{flex:1 1 260px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+  .pack h4{margin:0 0 8px;color:var(--white)}
+  .pack p{margin:8px 0;color:#cfe7e7}
+  .pack .deliver{font-weight:800;margin-top:12px;color:var(--accent)}
+
+  /* FAQ accordion */
+  .faq .q{background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;margin-bottom:10px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+  .faq .a{padding:10px 12px;margin-bottom:10px;background:rgba(255,255,255,0.01);border-radius:10px;color:#cfe7e7}
+
+  /* contact */
+  .contact{display:flex;gap:20px;align-items:center;justify-content:space-between}
+  .contact .btn{background:var(--accent);color:#002a2a;padding:14px 18px;border-radius:12px;font-weight:800}
+  .contact .small{color:#cfe7e7;font-size:0.95rem}
+
+  footer{padding:28px 0;color:#9fbfbf;border-top:1px solid rgba(255,255,255,0.02)}
+  .footer-inner{max-width:var(--container);margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center}
+
+  /* responsive */
+  @media (max-width:980px){
+    .hero{grid-template-columns:1fr;gap:22px}
+    .grid-2{grid-template-columns:1fr}
+    nav ul{display:none}
+    .brand h1{display:none}
+  }
+  @media (max-width:520px){
+    h2{font-size:1.6rem}
+    .hero-right{padding:16px}
+    .badges{gap:8px}
+  }
+
+  /* small helpers */
+  .muted{color:#bddede}
+  .small{font-size:0.9rem;color:#bcdede}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <div class="logo">S</div>
+      <div>
+        <h1>Sabrina — PhD Data Mining</h1>
+        <div class="small">Analyse de données • Python • R • SPSS • STATA</div>
+      </div>
+    </div>
+
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#methods">Méthodes</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact" class="cta">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-left">
+      <span class="kicker">Étude statistique complète</span>
+      <h2>Pour thèse de doctorat, mémoire de master ou article de recherche</h2>
+      <p class="lead">Analyse complète, interprétation académique et livrables prêts pour soutenance ou publication. Résultats clairs, fiables et scientifiquement rigoureux.</p>
+
+      <div style="margin-top:18px">
+        <div class="price-badge">À partir de <strong style="color:#002a2a">5000 DA</strong></div>
+      </div>
+    </div>
+
+    <aside class="hero-right" aria-labelledby="services">
+      <h3 id="services">Experte en Analyse de Données</h3>
+      <p class="muted">PhD en Data Mining • Spécialiste Python, R, SPSS & Stata</p>
+
+      <div class="badges" aria-hidden="true">
+        <!-- Python SVG badge -->
+        <div class="badge" title="Python">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true">
+            <rect x="0" y="0" width="64" height="64" rx="10" fill="#ffd966"/>
+            <path d="M20 12h18c3 0 6 3 6 6v6h-8v-4" fill="#306998"/>
+          </svg>
+          <div>
+            <strong style="color:var(--white)">Python</strong><div class="small">Pandas, sklearn</div>
+          </div>
+        </div>
+
+        <!-- R -->
+        <div class="badge" title="R">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="64" height="64" rx="10" fill="#3b8cdb"/>
+          </svg>
+          <div><strong style="color:var(--white)">R</strong><div class="small">ggplot2, stats</div></div>
+        </div>
+
+        <!-- STATA -->
+        <div class="badge" title="Stata">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="64" height="64" rx="10" fill="#1b6ea3"/>
+          </svg>
+          <div><strong style="color:var(--white)">STATA</strong><div class="small">Économétrie</div></div>
+        </div>
+
+        <!-- SPSS -->
+        <div class="badge" title="SPSS">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="64" height="64" rx="10" fill="#e84a5f"/>
+          </svg>
+          <div><strong style="color:var(--white)">SPSS</strong><div class="small">Sciences sociales</div></div>
+        </div>
+      </div>
+
+      <p class="small" style="margin-top:12px">
+        Services : nettoyage, analyses statistiques, modèles ML, visualisations, rapport académique & support jusqu'à la soutenance.
+      </p>
+    </aside>
+  </section>
+
+  <!-- SERVICES detailed -->
+  <section>
+    <div class="grid-2">
+      <div>
+        <h3 class="section-title">Ce que je propose</h3>
+        <p class="muted">Analyse de données sur mesure — thèse, mémoire, article scientifique, projet professionnel.</p>
+
+        <div style="margin-top:12px" class="card">
+          <h4 style="color:var(--white);margin-top:0">Analyses — Tous niveaux</h4>
+          <ul class="check" style="margin-top:8px">
+            <li>Analyse pour mémoire de Master</li>
+            <li>Analyse statistique pour thèse de doctorat</li>
+            <li>Analyses pour articles scientifiques / journaux</li>
+            <li>Projets professionnels et Capstones</li>
+            <li>Interprétation & rédaction des résultats</li>
+          </ul>
+        </div>
+
+        <div style="margin-top:18px" class="card">
+          <h4 style="color:var(--white)">Méthodes — Basique à Avancé</h4>
+          <div class="methods" style="margin-top:10px">
+            <div class="method">
+              <strong>Descriptives & Inférentielles</strong>
+              <p class="small">Moyenne, SD, tests t, ANOVA, chi-2, régressions.</p>
+            </div>
+            <div class="method">
+              <strong>Analyses avancées</strong>
+              <p class="small">EFA/CFA, SEM, séries temporelles, survival, modèles mixtes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside>
+        <div class="card">
+          <h4 style="margin-top:0;color:var(--white)">Outils & Environnements</h4>
+          <div class="tools">
+            <div class="tool-pill">Python (pandas, sklearn)</div>
+            <div class="tool-pill">R (ggplot2)</div>
+            <div class="tool-pill">SPSS</div>
+            <div class="tool-pill">STATA</div>
+            <div class="tool-pill">Excel / Power BI</div>
+            <div class="tool-pill">Jupyter / Colab</div>
+          </div>
+
+          <h4 style="margin-top:14px;color:var(--white)">Nettoyage & Préparation</h4>
+          <ul style="margin-top:8px;color:#cfe7e7">
+            <li>Gestion des valeurs manquantes & outliers</li>
+            <li>Transformation, encodage, scaling</li>
+            <li>Fusion & restructuration des jeux de données</li>
+          </ul>
+        </div>
+
+        <div class="card" style="margin-top:14px">
+          <h4 style="margin-top:0;color:var(--white)">Livrables</h4>
+          <ul style="margin-top:8px;color:#cfe7e7">
+            <li>Rapport Word / PDF (style académique)</li>
+            <li>Graphiques & tableaux prêts pour publication</li>
+            <li>Code reproductible (Python/R/Stata/SPSS)</li>
+            <li>Présentation PPT pour soutenance</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ML & examples -->
+  <section>
+    <div class="card">
+      <h3 class="section-title">Machine Learning & Exemples de projets</h3>
+      <p class="muted">Clustering, classification, prédiction, validation croisée et pipelines reproduisibles.</p>
+
+      <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:12px">
+        <div class="card" style="flex:1 1 300px">
+          <h4 style="margin:0;color:var(--white)">Exemples</h4>
+          <p class="small">Bioinformatique, santé publique, économie, social sciences, marketing, ingénierie.</p>
+        </div>
+
+        <div class="card" style="flex:1 1 300px">
+          <h4 style="margin:0;color:var(--white)">Techniques ML</h4>
+          <p class="small">K-means, DBSCAN, RandomForest, SVM, réseaux neuronaux simples.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section id="packages">
+    <h3 class="section-title">Forfaits</h3>
+    <div class="packs">
+      <div class="pack">
+        <h4>Basic — Mini Analyse</h4>
+        <p>Nettoyage simple, 2–3 tests, 2–4 graphiques, interprétation courte.</p>
+        <div class="deliver">Livraison : 1–2 jours</div>
+      </div>
+
+      <div class="pack">
+        <h4>Standard — Analyse complète</h4>
+        <p>Préparation complète, 4–8 tests, graphiques professionnels, interprétation détaillée.</p>
+        <div class="deliver">Livraison : 2–4 jours</div>
+      </div>
+
+      <div class="pack">
+        <h4>Premium — Thèse / PhD</h4>
+        <p>Analyse complète, méthodes avancées (SEM, ML...), 10–20 visualisations, rapport complet, PPT.</p>
+        <div class="deliver">Livraison : 4–7 jours</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Accordion -->
+  <section id="faq">
+    <h3 class="section-title">FAQ</h3>
+    <div class="faq card" style="margin-top:12px">
+      <div class="q">Puis-je obtenir de l’aide pour une thèse complète ? <span>+</span></div>
+      <div class="a" style="display:none">Oui — je prends en charge l’analyse, l’interprétation, la rédaction des résultats et la préparation de la soutenance.</div>
+
+      <div class="q">Que faire si je ne sais pas quels tests utiliser ? <span>+</span></div>
+      <div class="a" style="display:none">Je choisis et recommande les tests les plus adaptés à votre type de données et vos objectifs de recherche, et j’explique chaque étape.</div>
+
+      <div class="q">Acceptez-vous de grands jeux de données ? <span>+</span></div>
+      <div class="a" style="display:none">Oui — j’analyse des jeux de données de toute taille (surveys, expérimental, génomique, Excel, SPSS, CSV).</div>
+
+      <div class="q">Mes données sont-elles confidentielles ? <span>+</span></div>
+      <div class="a" style="display:none">Absolument — confidentialité garantie. Les fichiers ne sont partagés que si vous le demandez.</div>
+    </div>
+  </section>
+
+  <!-- Requirements & Contact -->
+  <section id="contact">
+    <div class="grid-2">
+      <div class="card">
+        <h3 class="section-title">Ce dont j’ai besoin</h3>
+        <ul style="color:#cfe7e7">
+          <li>Jeu de données (Excel, CSV, SPSS, STATA...)</li>
+          <li>Objectifs & questions de recherche</li>
+          <li>Hypothèses (si disponibles)</li>
+          <li>Consignes de l’université / superviseur</li>
+          <li>Description des variables</li>
+        </ul>
+      </div>
+
+      <div class="card contact">
+        <div>
+          <h3 style="margin:0;color:var(--white)">Prêt(e) à commencer ?</h3>
+          <p class="small">Contactez-moi pour un diagnostic gratuit et un devis personnalisé.</p>
+          <div style="margin-top:10px">
+            <a class="btn" href="mailto:your.email@example.com?subject=Analyse%20de%20données%20-%20Demande">Me contacter</a>
+          </div>
+        </div>
+
+        <div style="text-align:right">
+          <div class="small">Prix indicatif</div>
+          <div style="font-size:1.6rem;font-weight:800;color:var(--white);margin-top:6px">À partir de 5000 DA</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>© Sabrina — Analyse de données • PhD Data Mining</div>
+    <div style="opacity:0.9">Built for GitHub Pages • Export / reuse permitted</div>
+  </div>
+</footer>
+
+<script>
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      e.preventDefault();
+      const id = a.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
+
+  // Simple accordion for FAQ
+  document.querySelectorAll('.faq .q').forEach(q=>{
+    q.addEventListener('click',()=>{
+      const next = q.nextElementSibling;
+      const open = next.style.display === 'block';
+      // close all
+      document.querySelectorAll('.faq .a').forEach(a=>a.style.display='none');
+      document.querySelectorAll('.faq .q span').forEach(s=>s.textContent='+');
+      if(!open){
+        next.style.display='block';
+        q.querySelector('span').textContent='−';
+      }
+    });
+  });
+
+  // small accessible enhancements
+  document.addEventListener('keydown', e=>{
+    if(e.key === 'Escape'){
+      document.querySelectorAll('.faq .a').forEach(a=>a.style.display='none');
+    }
+  });
+</script>
+
+</body>
+</html>
