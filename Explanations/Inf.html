@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tests statistiques inférentiels — Guide essentiel pour votre recherche</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f7fa;
+    padding: 20px;
+}
+
+main.card {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 28px;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 15px;
+}
+
+h2 {
+    color: #2c3e50;
+    margin: 30px 0 20px;
+    font-size: 24px;
+}
+
+h3 {
+    color: #2c3e50;
+    margin: 20px 0 15px;
+    font-size: 20px;
+}
+
+h4 {
+    color: #2c3e50;
+    margin: 15px 0 10px;
+    font-size: 18px;
+}
+
+.analogy {
+    background: #e8f4fc;
+    border-left: 4px solid #3498db;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.benefit-box {
+    background: #e8f6ef;
+    border-left: 4px solid #2ecc71;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.method-card {
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 25px 0;
+    border: 1px solid #eaeaea;
+}
+
+.example {
+    background: white;
+    padding: 15px;
+    border-radius: 6px;
+    margin: 15px 0;
+    border-left: 3px solid #9b59b6;
+}
+
+.graph-container {
+    height: 300px;
+    margin: 15px 0;
+    border: 1px solid #eee;
+    border-radius: 6px;
+}
+
+.reasons-list {
+    margin: 25px 0;
+}
+
+.reason-item {
+    background: #f8f9fa;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 6px;
+    border-left: 3px solid #e74c3c;
+}
+
+.warning-box {
+    background: #fdeaea;
+    border-left: 4px solid #e74c3c;
+    padding: 15px;
+    margin: 25px 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.step-by-step {
+    background: #fef9e7;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    border-left: 4px solid #f1c40f;
+}
+
+.cta-box {
+    background: linear-gradient(135deg, #3498db, #2c3e50);
+    color: white;
+    padding: 25px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 30px 0;
+}
+
+ul {
+    padding-left: 25px;
+    margin: 15px 0;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+strong {
+    color: #2c3e50;
+}
+</style>
+</head>
+<body>
+<main class="card">
+
+<h1>📈 Tests statistiques inférentiels — L'essentiel pour des conclusions scientifiques solides</h1>
+
+<div class="analogy">
+<h3>🔄 Qu'est-ce qu'un test statistique inférentiel ?</h3>
+<p><strong>Définition simple :</strong> C'est la méthode qui vous permet de tirer des conclusions sur une population entière à partir d'un simple échantillon. C'est comme goûter une cuillerée de soupe pour décider si toute la marmite est bonne, plutôt que de devoir la boire entièrement.</p>
+</div>
+
+<h2>Les avantages décisifs des tests inférentiels</h2>
+
+<div class="benefit-box">
+<h3>🎯 Avantage principal : La capacité à généraliser vos résultats</h3>
+<p>Au lieu de vous limiter à décrire votre échantillon (ce qui donne une vision limitée), les tests inférentiels vous permettent d'<strong>étendre vos conclusions à une population plus large</strong>. C'est la différence entre dire "les 50 personnes que j'ai interrogées préfèrent A" et "la population entière préfère significativement A".</p>
+</div>
+
+<ul>
+<li><strong>Preuves statistiques solides</strong> : Passez des observations à des conclusions validées mathématiquement</li>
+<li><strong>Décisions éclairées</strong> : Prenez des décisions basées sur des preuves, pas sur des intuitions</li>
+<li><strong>Économie de temps et ressources</strong> : Étudiez un échantillon représentatif plutôt qu'une population entière</li>
+<li><strong>Mesure de l'incertitude</strong> : Quantifiez précisément le risque d'erreur dans vos conclusions</li>
+<li><strong>Comparaisons rigoureuses</strong> : Déterminez si les différences observées sont réelles ou dues au hasard</li>
+</ul>
+
+<h2>Exemples concrets : La transformation de vos résultats</h2>
+
+<div class="method-card">
+<h3>1. Test t : La comparaison qui fait la différence</h3>
+
+<div class="analogy">
+<p><strong>Analogie :</strong> Comme un juge qui décide si la différence de taille entre deux groupes est suffisamment importante pour ne pas être due simplement au hasard.</p>
+</div>
+
+<div class="example">
+<strong>Exemple concret — Recherche en éducation :</strong>
+<p>Vous comparez les résultats d'un groupe utilisant une nouvelle méthode pédagogique (moyenne = 78/100) avec un groupe utilisant la méthode traditionnelle (moyenne = 72/100). Le test t révèle :</p>
+<ul>
+<li><strong>p-value = 0.012</strong> (inférieure au seuil de 0.05)</li>
+<li><strong>Différence significative</strong> entre les deux groupes</li>
+<li><strong>La nouvelle méthode est efficace</strong> avec un risque d'erreur de seulement 1.2%</li>
+</ul>
+<p><strong>Résultat :</strong> Vous pouvez affirmer avec confiance que la nouvelle méthode améliore réellement les résultats, et pas seulement dans votre échantillon.</p>
+<div id="tTestEducation" class="graph-container"></div>
+</div>
+</div>
+
+<div class="method-card">
+<h3>2. Test du Chi-deux : La relation qui éclaire tout</h3>
+
+<div class="analogy">
+<p><strong>Analogie :</strong> Comme un détective qui cherche des liens entre deux caractéristiques dans une population, au-delà des apparences.</p>
+</div>
+
+<div class="example">
+<strong>Exemple concret — Étude marketing :</strong>
+<p>Vous analysez si la préférence pour un type de produit est liée au genre des consommateurs. Le test du Chi-deux montre :</p>
+<ul>
+<li><strong>p-value = 0.003</strong> (très inférieure à 0.05)</li>
+<li><strong>Lien significatif</strong> entre genre et préférence produit</li>
+<li><strong>Les femmes préfèrent significativement</strong> le produit A (68% contre 32%)</li>
+<li><strong>Les hommes préfèrent significativement</strong> le produit B (61% contre 39%)</li>
+</ul>
+<p><strong>Résultat :</strong> Vous passez de "je vois des différences" à "je sais que ces différences sont statistiquement significatives et pas dues au hasard".</p>
+<div id="chiSquareMarketing" class="graph-container"></div>
+</div>
+</div>
+
+<div class="method-card">
+<h3>3. ANOVA : La comparaison multiple qui clarifie</h3>
+
+<div class="analogy">
+<p><strong>Analogie :</strong> Comme un arbitre qui compare simultanément les performances de plusieurs équipes pour identifier la meilleure.</p>
+</div>
+
+<div class="example">
+<strong>Exemple concret — Recherche médicale :</strong>
+<p>Vous testez trois doses différentes d'un médicament (faible, moyenne, forte) sur la réduction de la pression artérielle. L'ANOVA révèle :</p>
+<ul>
+<li><strong>p-value globale = 0.008</strong> (différence significative entre au moins deux groupes)</li>
+<li><strong>Test post-hoc</strong> montre que la dose forte est significativement meilleure que les autres</li>
+<li><strong>Aucune différence significative</strong> entre les doses faible et moyenne</li>
+</ul>
+<p><strong>Résultat :</strong> Vous identifiez précisément quelles différences comptent vraiment, sans multiplier les tests et augmenter le risque d'erreur.</p>
+<div id="anovaMedical" class="graph-container"></div>
+</div>
+</div>
+
+<h2>Les 5 raisons IMPÉRATIVES d'inclure les tests inférentiels dans votre recherche</h2>
+
+<div class="reasons-list">
+<div class="reason-item">
+<h4>🎯 1. Passez de la description à l'inférence scientifique</h4>
+<p>Les statistiques descriptives vous disent "ce qui est" dans votre échantillon. Les tests inférentiels vous disent "ce qui est probablement vrai" pour l'ensemble de la population - c'est le cœur de la méthode scientifique.</p>
+</div>
+
+<div class="reason-item">
+<h4>📈 2. Donnez du poids statistique à vos conclusions</h4>
+<p>Sans tests inférentiels, vos observations restent anecdotiques. Avec eux, vous pouvez affirmer "nos résultats sont statistiquement significatifs" - l'expression qui change tout dans un contexte académique.</p>
+</div>
+
+<div class="reason-item">
+<h4>🎓 3. Répondez aux exigences méthodologiques actuelles</h4>
+<p>Aujourd'hui, toute recherche sérieuse exige des tests statistiques appropriés. Les tests inférentiels sont la norme dans toutes les disciplines scientifiques pour valider les hypothèses.</p>
+</div>
+
+<div class="reason-item">
+<h4>🔍 4. Évitez les conclusions erronées dues au hasard</h4>
+<p>Le hasard peut créer des différences apparentes même quand il n'y en a pas. Les tests inférentiels quantifient précisément cette probabilité, protégeant vos conclusions des illusions statistiques.</p>
+</div>
+
+<div class="reason-item">
+<h4>💼 5. Valorisez votre recherche auprès des pairs</h4>
+<p>Les revues scientifiques rejettent systématiquement les articles sans analyses inférentielles appropriées. C'est un passage obligé pour toute publication dans un journal sérieux.</p>
+</div>
+</div>
+
+<div class="warning-box">
+<h3>⚠️ Ce que vous risquez sans tests inférentiels :</h3>
+<ul>
+<li><strong>Conclusions non généralisables</strong> qui limitent la portée de votre recherche</li>
+<li><strong>Questions embarrassantes</strong> lors de votre soutenance sur la validité de vos conclusions</li>
+<li><strong>Impossibilité de tester vos hypothèses</strong> de recherche de manière scientifique</li>
+<li><strong>Rejet par les revues scientifiques</strong> pour manque de rigueur méthodologique</li>
+<li><strong>Résultats non publiables</strong> malgré des mois de travail de collecte</li>
+</ul>
+</div>
+
+<h2>Comment intégrer les tests inférentiels à votre recherche</h2>
+
+<div class="step-by-step">
+<h3>Option recommandée : Analyse complète avec tests inférentiels</h3>
+<p><strong>Idéal pour :</strong> Thèses doctorales, mémoires de master, publications scientifiques</p>
+<ul>
+<li>Tests statistiques adaptés à votre plan de recherche et hypothèses</li>
+<li>Interprétation complète des p-values, intervalles de confiance et tailles d'effet</li>
+<li>Visualisations professionnelles mettant en valeur les résultats significatifs</li>
+<li>Guide de rédaction pour votre chapitre résultats et discussion</li>
+<li>Support pour répondre aux questions méthodologiques de votre jury</li>
+</ul>
+</div>
+
+<div class="step-by-step">
+<h3>Option économique : Tests inférentiels ciblés</h3>
+<p><strong>Idéal pour :</strong> Budgets limités, recherches exploratoires, validation d'hypothèses principales</p>
+<ul>
+<li>Focus sur les tests essentiels pour vos hypothèses de recherche</li>
+<li>Interprétation des résultats statistiques clés</li>
+<li>Graphiques principaux pour votre présentation</li>
+<li>Recommandations pour la discussion des résultats</li>
+</ul>
+</div>
+
+<div class="cta-box">
+<h2>🚀 Ne laissez pas le hasard dicter vos conclusions</h2>
+<p><strong>Des mois de collecte de données méritent une analyse statistique rigoureuse</strong></p>
+<p>Les tests inférentiels transforment vos observations en preuves scientifiques</p>
+<p><strong>Validez vos hypothèses avec la rigueur que votre recherche mérite</strong></p>
+<p>Obtenez des conclusions scientifiquement solides dès aujourd'hui</p>
+</div>
+
+<!-- Graphiques interactifs -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+// Test t - Éducation
+var group_a = [65, 68, 72, 75, 78, 80, 82, 85, 88, 90];
+var group_b = [60, 62, 65, 68, 70, 72, 75, 78, 80, 82];
+
+Plotly.newPlot('tTestEducation', [
+    {
+        y: group_a,
+        name: 'Nouvelle méthode',
+        type: 'box',
+        boxpoints: 'all',
+        jitter: 0.3,
+        pointpos: -1.8,
+        marker: {color: '#4CAF50'}
+    },
+    {
+        y: group_b,
+        name: 'Méthode traditionnelle',
+        type: 'box',
+        boxpoints: 'all',
+        jitter: 0.3,
+        pointpos: -1.8,
+        marker: {color: '#F44336'}
+    }
+], {
+    title: "Test t - Comparaison des résultats avec deux méthodes pédagogiques",
+    yaxis: {title: "Notes sur 100"},
+    height: 300,
+    showlegend: true
+});
+
+// Chi-deux - Marketing
+var chi_data = [
+    {
+        x: ['Femmes', 'Hommes'],
+        y: [68, 32],
+        name: 'Produit A',
+        type: 'bar',
+        marker: {color: '#9C27B0'}
+    },
+    {
+        x: ['Femmes', 'Hommes'],
+        y: [32, 61],
+        name: 'Produit B',
+        type: 'bar',
+        marker: {color: '#FF9800'}
+    }
+];
+
+var chi_layout = {
+    title: "Test du Chi-deux - Préférence produit selon le genre",
+    barmode: 'stack',
+    yaxis: {title: "Pourcentage (%)"},
+    height: 300,
+    annotations: [
+        {
+            x: 0,
+            y: 85,
+            text: "Préférence significative<br>pour le produit A",
+            showarrow: false,
+            font: {color: 'white', size: 12},
+            bgcolor: 'rgba(0,0,0,0.6)',
+            bordercolor: 'black',
+            borderwidth: 1,
+            borderpad: 4
+        },
+        {
+            x: 1,
+            y: 85,
+            text: "Préférence significative<br>pour le produit B",
+            showarrow: false,
+            font: {color: 'white', size: 12},
+            bgcolor: 'rgba(0,0,0,0.6)',
+            bordercolor: 'black',
+            borderwidth: 1,
+            borderpad: 4
+        }
+    ]
+};
+
+Plotly.newPlot('chiSquareMarketing', chi_data, chi_layout);
+
+// ANOVA - Médical
+var dose_faible = [5, 6, 7, 5, 6, 8, 6, 7, 5, 6];
+var dose_moyenne = [7, 8, 9, 8, 7, 9, 8, 9, 7, 8];
+var dose_forte = [12, 13, 11, 14, 12, 13, 15, 12, 13, 14];
+
+Plotly.newPlot('anovaMedical', [
+    {
+        y: dose_faible,
+        name: 'Dose faible',
+        type: 'box',
+        boxpoints: 'all',
+        jitter: 0.3,
+        pointpos: -1.8,
+        marker: {color: '#FFC107'}
+    },
+    {
+        y: dose_moyenne,
+        name: 'Dose moyenne',
+        type: 'box',
+        boxpoints: 'all',
+        jitter: 0.3,
+        pointpos: -1.8,
+        marker: {color: '#FF9800'}
+    },
+    {
+        y: dose_forte,
+        name: 'Dose forte',
+        type: 'box',
+        boxpoints: 'all',
+        jitter: 0.3,
+        pointpos: -1.8,
+        marker: {color: '#F44336'}
+    }
+], {
+    title: "ANOVA - Réduction de pression artérielle selon la dose",
+    yaxis: {title: "Réduction (mm Hg)"},
+    height: 300,
+    showlegend: true,
+    annotations: [
+        {
+            x: 2,
+            y: 16,
+            text: "Différence significative<br>avec les autres doses",
+            showarrow: true,
+            arrowhead: 2,
+            ax: 0,
+            ay: -40,
+            bgcolor: '#F44336',
+            font: {color: 'white'}
+        }
+    ]
+});
+</script>
+
+</main>
+</body>
+</html>

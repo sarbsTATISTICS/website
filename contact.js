@@ -64,12 +64,12 @@ const pricingConfig = {
     },
     urgencyPrices: {
         normal: 0,
-        urgent: 2000,
-        express: 4000
+        urgent: 4000,
+        express: 8000
     },
     reportTypePrices: {
-        word: 0,
-        latex: 500
+        word: 500,
+        latex: 0
     },
     presentationPrices: {
         none: 0,
@@ -109,70 +109,6 @@ const planDisplayNames = {
     'Complet': 'Complet'
 };
 
-// Initialize the form
-document.addEventListener('DOMContentLoaded', function() {
-    // Set the selected plan in the summary with proper display name
-    document.getElementById('summary-plan').textContent = planDisplayNames[selectedPlan] || selectedPlan;
-    
-    // Set initial plan selection
-    document.querySelector(`input[name="selectedPlan"][value="${selectedPlan}"]`).checked = true;
-    updatePlanSelection();
-    
-    // Update plan information
-    updatePlanInformation();
-    
-    // Set today as minimum date for deadline
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('deadline').min = today;
-    
-    // Add event listeners for plan selection - FIXED VERSION
-    document.querySelectorAll('.plan-option').forEach(option => {
-        option.addEventListener('click', function(e) {
-            // Don't trigger if clicking on the radio button itself
-            if (e.target.type === 'radio') return;
-            
-            const radio = this.querySelector('input[type="radio"]');
-            if (radio) {
-                radio.checked = true;
-                selectedPlan = radio.value;
-                currentPlanConfig = planConfigs[selectedPlan];
-                updatePlanSelection();
-                updatePlanInformation();
-                updatePricing();
-            }
-        });
-    });
-    
-    // Also listen for direct radio button changes
-    document.querySelectorAll('input[name="selectedPlan"]').forEach(radio => {
-        radio.addEventListener('change', function() {
-            selectedPlan = this.value;
-            currentPlanConfig = planConfigs[selectedPlan];
-            updatePlanSelection();
-            updatePlanInformation();
-            updatePricing();
-        });
-    });
-    
-    // Add event listeners for checkboxes to update pricing
-    document.querySelectorAll('input[name="analysisType"]').forEach(checkbox => {
-        checkbox.addEventListener('change', updatePricing);
-    });
-
-    // Add event listeners for other form elements that affect pricing
-    document.querySelectorAll('#numTests, #numGraphs, #dataSize, #urgency, #reportType, #presentationType, #additionalSlides').forEach(element => {
-        element.addEventListener('change', updatePricing);
-    });
-    
-    // Set form email when email field changes
-    document.getElementById('email').addEventListener('change', function() {
-        document.getElementById('form-email').value = this.value;
-    });
-
-    // Initialize pricing
-    updatePricing();
-});
-
 // Update plan selection visual state
 function updatePlanSelection() {
     document.querySelectorAll('.plan-option').forEach(option => {
@@ -184,38 +120,111 @@ function updatePlanSelection() {
     });
 }
 
+// Setup plan selection event listeners
+function setupPlanSelection() {
+    document.querySelectorAll('.plan-option').forEach(option => {
+        option.addEventListener('click', function (e) {
+            // Don't trigger if clicking on the radio button itself
+            if (e.target.type === 'radio') return;
+
+            const radio = this.querySelector('input[type="radio"]');
+            if (radio) {
+                radio.checked = true;
+                selectedPlan = radio.value;
+                currentPlanConfig = planConfigs[selectedPlan];
+                updatePlanSelection();
+                updatePlanInformation();
+                updatePricing();
+            }
+        });
+    });
+
+    // Also listen for direct radio button changes
+    document.querySelectorAll('input[name="selectedPlan"]').forEach(radio => {
+        radio.addEventListener('change', function () {
+            selectedPlan = this.value;
+            currentPlanConfig = planConfigs[selectedPlan];
+            updatePlanSelection();
+            updatePlanInformation();
+            updatePricing();
+        });
+    });
+}
+
+// Update which analyses are included in the plan
+function updateAnalysisInclusions() {
+    const planConfig = planConfigs[selectedPlan];
+
+    // Reset all checkboxes
+    document.querySelectorAll('input[name="analysisType"]').forEach(checkbox => {
+        checkbox.checked = false;
+        checkbox.disabled = false;
+    });
+
+    // Set included analyses based on plan
+    if (selectedPlan === 'Essentiel') {
+        document.getElementById('analysis_descriptive').checked = true;
+        document.getElementById('analysis_descriptive').disabled = true;
+    }
+    else if (selectedPlan === 'Avance') {
+        document.getElementById('analysis_descriptive').checked = true;
+        document.getElementById('analysis_multivariate').checked = true;
+        document.getElementById('analysis_descriptive').disabled = true;
+        document.getElementById('analysis_multivariate').disabled = true;
+    }
+    else if (selectedPlan === 'Complet') {
+        // All analyses are included and mandatory for Complet plan
+        document.querySelectorAll('input[name="analysisType"]').forEach(checkbox => {
+            checkbox.checked = true;
+            checkbox.disabled = true;
+        });
+    }
+}
+
 // Update plan information based on selected plan
 function updatePlanInformation() {
     const planConfig = planConfigs[selectedPlan];
-    
+
     // Update plan name and price with proper display name
     document.getElementById('selected-plan-name').textContent = planDisplayNames[selectedPlan] || selectedPlan;
     document.getElementById('selected-plan-price').textContent = `${planConfig.basePrice} DA`;
-    
+
     // Update included features
-    document.getElementById('included-tests').textContent = 
+    document.getElementById('included-tests').textContent =
         planConfig.includedTests === 999 ? 'Tests statistiques illimités' : `${planConfig.includedTests} tests statistiques inclus`;
-    
-    document.getElementById('included-graphs').textContent = 
+
+    document.getElementById('included-graphs').textContent =
         planConfig.includedGraphs === 999 ? 'Graphiques illimités' : `${planConfig.includedGraphs} graphiques inclus`;
-    
-    document.getElementById('included-data').textContent = 
-        planConfig.includedData === 'xlarge' ? 'Jeu de données illimité' : 
-        planConfig.includedData === 'medium' ? '1001 - 5000 observations' : '≤ 1000 observations';
-    
+
+    document.getElementById('included-data').textContent =
+        planConfig.includedData === 'xlarge' ? 'Jeu de données illimité' :
+            planConfig.includedData === 'medium' ? '1001 - 5000 observations' : '≤ 1000 observations';
+
     // Update pricing info text
-    document.getElementById('tests-info').textContent = 
-        planConfig.includedTests === 999 ? 
-        'Tests illimités inclus dans le plan' : 
-        `${pricingConfig.testPrice} DA par test au-delà de ${planConfig.includedTests} tests inclus`;
-    
-    document.getElementById('graphs-info').textContent = 
-        planConfig.includedGraphs === 999 ? 
-        'Graphiques illimités inclus dans le plan' : 
-        `${pricingConfig.graphPrice} DA par graphique au-delà de ${planConfig.includedGraphs} inclus`;
-    
+    document.getElementById('tests-info').textContent =
+        planConfig.includedTests === 999 ?
+            'Tests illimités inclus dans le plan' :
+            `${pricingConfig.testPrice} DA par test au-delà de ${planConfig.includedTests} tests inclus`;
+
+    document.getElementById('graphs-info').textContent =
+        planConfig.includedGraphs === 999 ?
+            'Graphiques illimités inclus dans le plan' :
+            `${pricingConfig.graphPrice} DA par graphique au-delà de ${planConfig.includedGraphs} inclus`;
+
     // Update base price label
     document.getElementById('base-price-label').textContent = `Plan ${planDisplayNames[selectedPlan] || selectedPlan}:`;
+
+    // Update analysis checkboxes based on plan
+    updateAnalysisInclusions();
+}
+
+// Get price from pricingConfig instead of data-price attributes
+function getPriceFromConfig(elementId, configObject) {
+    const element = document.getElementById(elementId);
+    if (!element) return 0;
+
+    const value = element.value;
+    return configObject[value] || 0;
 }
 
 // Update pricing based on user selections
@@ -229,73 +238,99 @@ function updatePricing() {
     let reportCost = 0;
     let presentationCost = 0;
     let additionalSlidesCost = 0;
-    
+
     // Calculate analysis costs
     document.querySelectorAll('input[name="analysisType"]:checked').forEach(checkbox => {
-        const price = parseInt(checkbox.getAttribute('data-price'));
-        analysisCost += price;
+        const analysisType = checkbox.value;
+        let price = pricingConfig.analysisPrices[analysisType] || 0;
+
+        // Apply plan-specific pricing rules
+        if (selectedPlan === 'Essentiel') {
+            // Only descriptive is free, others are charged
+            if (analysisType !== 'descriptive') {
+                analysisCost += price;
+            }
+        }
+        else if (selectedPlan === 'Avance') {
+            // Descriptive and multivariate are free, others are charged
+            if (analysisType !== 'descriptive' && analysisType !== 'multivariate') {
+                analysisCost += price;
+            }
+        }
+        else if (selectedPlan === 'Complet') {
+            // All analyses are free
+            analysisCost += 0;
+        }
     });
-    
+
     // Calculate tests cost (only if not unlimited)
     if (currentPlanConfig.includedTests !== 999) {
         const numTests = parseInt(document.getElementById('numTests').value) || 0;
-        if (numTests > currentPlanConfig.includedTests) {
-            testsCost = (numTests - currentPlanConfig.includedTests) * pricingConfig.testPrice;
+        const includedTests = currentPlanConfig.includedTests;
+        if (numTests > includedTests) {
+            testsCost = (numTests - includedTests) * pricingConfig.testPrice;
         }
     }
-    
+
     // Calculate graphs cost (only if not unlimited)
     if (currentPlanConfig.includedGraphs !== 999) {
         const numGraphs = parseInt(document.getElementById('numGraphs').value) || 0;
-        if (numGraphs > currentPlanConfig.includedGraphs) {
-            graphsCost = (numGraphs - currentPlanConfig.includedGraphs) * pricingConfig.graphPrice;
+        const includedGraphs = currentPlanConfig.includedGraphs;
+        if (numGraphs > includedGraphs) {
+            graphsCost = (numGraphs - includedGraphs) * pricingConfig.graphPrice;
         }
     }
-    
+
     // Calculate data size cost (only if not unlimited)
     if (currentPlanConfig.includedData !== 'xlarge') {
         const dataSizeSelect = document.getElementById('dataSize');
-        const dataSizePrice = parseInt(dataSizeSelect.options[dataSizeSelect.selectedIndex].getAttribute('data-price'));
-        dataCost = dataSizePrice;
+        const selectedDataSize = dataSizeSelect.value;
+        const dataSizePrice = pricingConfig.dataSizePrices[selectedDataSize] || 0;
+
+        // Only charge for data size if it's larger than the included size
+        const includedDataSize = currentPlanConfig.includedData;
+        const sizeHierarchy = { small: 0, medium: 1, large: 2, xlarge: 3 };
+
+        if (sizeHierarchy[selectedDataSize] > sizeHierarchy[includedDataSize]) {
+            dataCost = dataSizePrice;
+        } else {
+            dataCost = 0; // Free if selected size is smaller or equal to included size
+        }
     } else {
         // For Complet plan, set data size to xlarge by default
         document.getElementById('dataSize').value = 'xlarge';
+        dataCost = 0; // Free for Complet plan
     }
-    
-    // Calculate urgency cost
-    const urgencySelect = document.getElementById('urgency');
-    const urgencyPrice = parseInt(urgencySelect.options[urgencySelect.selectedIndex].getAttribute('data-price'));
-    urgencyCost = urgencyPrice;
-    
-    // Calculate report type cost
-    const reportTypeSelect = document.getElementById('reportType');
-    const reportTypePrice = parseInt(reportTypeSelect.options[reportTypeSelect.selectedIndex].getAttribute('data-price'));
-    reportCost = reportTypePrice;
-    
-    // Calculate presentation cost
-    const presentationSelect = document.getElementById('presentationType');
-    const presentationType = presentationSelect.value;
-    const presentationPrice = parseInt(presentationSelect.options[presentationSelect.selectedIndex].getAttribute('data-price'));
-    presentationCost = presentationPrice;
-    
+
+    // Calculate urgency cost using pricingConfig
+    const urgencyValue = document.getElementById('urgency').value;
+    urgencyCost = pricingConfig.urgencyPrices[urgencyValue] || 0;
+
+    // Calculate report type cost using pricingConfig
+    const reportTypeValue = document.getElementById('reportType').value;
+    reportCost = pricingConfig.reportTypePrices[reportTypeValue] || 0;
+
+    // Calculate presentation cost using pricingConfig
+    const presentationValue = document.getElementById('presentationType').value;
+    presentationCost = pricingConfig.presentationPrices[presentationValue] || 0;
+
     // Show/hide additional slides based on presentation selection
     const additionalSlidesGroup = document.getElementById('additionalSlidesGroup');
-    if (presentationType === 'none') {
+    if (presentationValue === 'none') {
         additionalSlidesGroup.style.display = 'none';
         // Reset additional slides when no presentation is selected
         document.getElementById('additionalSlides').value = '0';
     } else {
         additionalSlidesGroup.style.display = 'block';
     }
-    
-    // Calculate additional slides cost
-    const additionalSlidesSelect = document.getElementById('additionalSlides');
-    const additionalSlidesPrice = parseInt(additionalSlidesSelect.options[additionalSlidesSelect.selectedIndex].getAttribute('data-price'));
-    additionalSlidesCost = additionalSlidesPrice;
-    
+
+    // Calculate additional slides cost using pricingConfig
+    const additionalSlidesValue = document.getElementById('additionalSlides').value;
+    additionalSlidesCost = pricingConfig.additionalSlidesPrices[additionalSlidesValue] || 0;
+
     // Calculate total
     total = currentPlanConfig.basePrice + analysisCost + testsCost + graphsCost + dataCost + urgencyCost + reportCost + presentationCost + additionalSlidesCost;
-    
+
     // Update display
     document.getElementById('base-price').textContent = `${currentPlanConfig.basePrice} DA`;
     document.getElementById('analysis-price').textContent = `${analysisCost} DA`;
@@ -307,7 +342,7 @@ function updatePricing() {
     document.getElementById('presentation-price').textContent = `${presentationCost} DA`;
     document.getElementById('additional-slides-price').textContent = `${additionalSlidesCost} DA`;
     document.getElementById('total-price').textContent = `${total} DA`;
-    
+
     // Store total for later use
     window.currentTotal = total;
     window.currentPlan = selectedPlan;
@@ -316,19 +351,19 @@ function updatePricing() {
 // Update summary section
 function updateSummary() {
     // Personal info
-    document.getElementById('summary-name').textContent = 
+    document.getElementById('summary-name').textContent =
         `${document.getElementById('firstName').value} ${document.getElementById('lastName').value}`;
     document.getElementById('summary-email').textContent = document.getElementById('email').value;
-    
+
     // Project details
     const projectTypeSelect = document.getElementById('projectType');
     const projectTypeText = projectTypeSelect.options[projectTypeSelect.selectedIndex].text;
     document.getElementById('summary-project-type').textContent = projectTypeText;
     document.getElementById('summary-project-title').textContent = document.getElementById('projectTitle').value;
-    document.getElementById('summary-research-question').textContent = 
-        document.getElementById('researchQuestion').value.substring(0, 100) + 
+    document.getElementById('summary-research-question').textContent =
+        document.getElementById('researchQuestion').value.substring(0, 100) +
         (document.getElementById('researchQuestion').value.length > 100 ? '...' : '');
-    
+
     // Analysis types
     const analysisTypes = Array.from(document.querySelectorAll('input[name="analysisType"]:checked'))
         .map(cb => {
@@ -337,12 +372,12 @@ function updateSummary() {
         })
         .join(', ');
     document.getElementById('summary-analysis-types').textContent = analysisTypes || 'Non spécifié';
-    
+
     // Software preference
     const softwareSelect = document.getElementById('softwarePreference');
     const softwareText = softwareSelect.value ? softwareSelect.options[softwareSelect.selectedIndex].text : 'Aucune préférence';
     document.getElementById('summary-software').textContent = softwareText;
-    
+
     // Deadline
     const deadline = document.getElementById('deadline').value;
     if (deadline) {
@@ -352,15 +387,88 @@ function updateSummary() {
     } else {
         document.getElementById('summary-deadline').textContent = 'Non spécifié';
     }
-    
+
+    // Data link
+    const dataLink = document.getElementById('dataLink').value;
+    if (dataLink) {
+        // Add data link to summary if needed
+    }
+
     // Plan and total price
     document.getElementById('summary-plan').textContent = planDisplayNames[window.currentPlan] || window.currentPlan;
     document.getElementById('summary-total-price').textContent = `${window.currentTotal || currentPlanConfig.basePrice} DA`;
-    
-    // Update hidden form fields for Formspree
-    document.getElementById('form-total-price').value = window.currentTotal || currentPlanConfig.basePrice;
-    document.getElementById('form-selected-plan').value = planDisplayNames[window.currentPlan] || window.currentPlan;
-    document.getElementById('form-email').value = document.getElementById('email').value;
+}
+
+// AJAX Form Submission
+function submitFormAJAX() {
+    // Update summary one last time before submission
+    updateSummary();
+
+    // Show loading state
+    const submitBtn = document.querySelector('.btn-success');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<span>Envoi en cours...</span>';
+    submitBtn.disabled = true;
+
+    // Prepare form data
+    const formData = new FormData();
+
+    // Add all form fields
+    const form = document.getElementById('analysis-request-form');
+    const formElements = form.elements;
+
+    for (let element of formElements) {
+        if (element.name && element.type !== 'file') {
+            if (element.type === 'checkbox' || element.type === 'radio') {
+                if (element.checked) {
+                    formData.append(element.name, element.value);
+                }
+            } else {
+                formData.append(element.name, element.value);
+            }
+        }
+    }
+
+    // Add Formspree specific fields
+    formData.append('_subject', 'Nouvelle demande d\'analyse de données');
+    formData.append('_replyto', document.getElementById('email').value);
+    formData.append('total_price', window.currentTotal || currentPlanConfig.basePrice);
+    formData.append('selected_plan', planDisplayNames[window.currentPlan] || window.currentPlan);
+    formData.append('_captcha', 'false');
+
+    // Send via AJAX
+    fetch('https://formspree.io/f/xldzdqeo', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+        .then(response => {
+            if (response.ok) {
+                // Show success message
+                // In the success handler:
+                document.querySelectorAll('.form-section').forEach(section => {
+                    section.style.display = 'none';
+                });
+                document.getElementById('success-message').style.display = 'block';
+
+                // Scroll to top to show success message
+                window.scrollTo(0, 0);
+            } else {
+                return response.json().then(error => {
+                    throw new Error(error.error || 'Erreur lors de l\'envoi');
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Désolé, une erreur est survenue lors de l\'envoi de votre demande. Veuillez réessayer ou me contacter directement par email.');
+
+            // Reset button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        });
 }
 
 // Navigation between steps
@@ -369,12 +477,12 @@ function nextStep(currentStep) {
     if (validateStep(currentStep)) {
         document.getElementById(`step-${currentStep}`).classList.remove('active');
         document.getElementById(`step-${currentStep + 1}`).classList.add('active');
-        
+
         // Update progress bar
         document.querySelector(`.progress-step[data-step="${currentStep}"]`).classList.remove('active');
         document.querySelector(`.progress-step[data-step="${currentStep}"]`).classList.add('completed');
         document.querySelector(`.progress-step[data-step="${currentStep + 1}"]`).classList.add('active');
-        
+
         // If moving to confirmation step, update summary
         if (currentStep === 3) {
             updateSummary();
@@ -385,7 +493,7 @@ function nextStep(currentStep) {
 function prevStep(currentStep) {
     document.getElementById(`step-${currentStep}`).classList.remove('active');
     document.getElementById(`step-${currentStep - 1}`).classList.add('active');
-    
+
     // Update progress bar
     document.querySelector(`.progress-step[data-step="${currentStep}"]`).classList.remove('active');
     document.querySelector(`.progress-step[data-step="${currentStep - 1}"]`).classList.add('active');
@@ -394,12 +502,12 @@ function prevStep(currentStep) {
 // Validate form steps
 function validateStep(step) {
     let isValid = true;
-    
+
     if (step === 1) {
         const firstName = document.getElementById('firstName').value;
         const lastName = document.getElementById('lastName').value;
         const email = document.getElementById('email').value;
-        
+
         if (!firstName || !lastName || !email) {
             alert('Veuillez remplir tous les champs obligatoires');
             isValid = false;
@@ -411,7 +519,7 @@ function validateStep(step) {
         const projectType = document.getElementById('projectType').value;
         const projectTitle = document.getElementById('projectTitle').value;
         const researchQuestion = document.getElementById('researchQuestion').value;
-        
+
         if (!projectType || !projectTitle || !researchQuestion) {
             alert('Veuillez remplir tous les champs obligatoires');
             isValid = false;
@@ -423,7 +531,7 @@ function validateStep(step) {
             isValid = false;
         }
     }
-    
+
     return isValid;
 }
 
@@ -433,23 +541,43 @@ function isValidEmail(email) {
     return re.test(email);
 }
 
-// Handle form submission
-document.getElementById('analysis-request-form').addEventListener('submit', function(e) {
-    // Prevent default form submission
-    e.preventDefault();
-    
-    // Update summary one last time before submission
-    updateSummary();
-    
-    // Show success message
-    document.getElementById('step-4').classList.remove('active');
-    document.getElementById('success-message').classList.add('active');
-    
-    // Submit the form to Formspree
-    this.submit();
-});
-
 // Redirect to home page
 function goHome() {
     window.location.href = 'index.html';
 }
+
+// Initialize the form
+document.addEventListener('DOMContentLoaded', function () {
+    // Set the selected plan in the summary with proper display name
+    document.getElementById('summary-plan').textContent = planDisplayNames[selectedPlan] || selectedPlan;
+
+    // Set initial plan selection
+    const initialPlanRadio = document.querySelector(`input[name="selectedPlan"][value="${selectedPlan}"]`);
+    if (initialPlanRadio) {
+        initialPlanRadio.checked = true;
+    }
+
+    // Setup plan selection handlers
+    setupPlanSelection();
+    updatePlanSelection();
+
+    // Update plan information
+    updatePlanInformation();
+
+    // Set today as minimum date for deadline
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('deadline').min = today;
+
+    // Add event listeners for checkboxes to update pricing
+    document.querySelectorAll('input[name="analysisType"]').forEach(checkbox => {
+        checkbox.addEventListener('change', updatePricing);
+    });
+
+    // Add event listeners for other form elements that affect pricing
+    document.querySelectorAll('#numTests, #numGraphs, #dataSize, #urgency, #reportType, #presentationType, #additionalSlides').forEach(element => {
+        element.addEventListener('change', updatePricing);
+    });
+
+    // Initialize pricing
+    updatePricing();
+});

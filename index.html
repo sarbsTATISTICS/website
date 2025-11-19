@@ -1,668 +1,20 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analyse de données professionnelle, PhD</title>
-    <meta name="description" content="Étude statistique complète pour thèse, mémoire ou article. PhD en Data Mining — Python, R, STATA, SPSS. À partir de 5000 DA.">
-    <style>
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --primary-light: #dbeafe;
-            --secondary: #059669;
-            --accent: #f59e0b;
-            --accent-light: #fef3c7;
-            --light: #f8fafc;
-            --white: #ffffff;
-            --gray-100: #f1f5f9;
-            --gray-200: #e2e8f0;
-            --gray-300: #cbd5e1;
-            --gray-500: #64748b;
-            --gray-700: #334155;
-            --gray-900: #0f172a;
-            --radius: 12px;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --container: 1200px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html, body {
-            height: 100%;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: var(--white);
-            color: var(--gray-700);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        a {
-            color: var(--primary);
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        a:hover {
-            color: var(--primary-dark);
-        }
-
-        /* Header */
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            background-color: var(--white);
-            box-shadow: var(--shadow);
-        }
-
-        .nav {
-            max-width: var(--container);
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 20px;
-        }
-
-        .brand {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-
-        .logo {
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            display: grid;
-            place-items: center;
-            color: var(--white);
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
-
-        .brand-text h1 {
-            margin: 0;
-            font-size: 1.1rem;
-            color: var(--gray-900);
-            letter-spacing: 0.4px;
-        }
-
-        .brand-text .subtitle {
-            font-size: 0.8rem;
-            color: var(--gray-500);
-        }
-
-        nav ul {
-            display: flex;
-            gap: 24px;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav li a {
-            color: var(--gray-700);
-            font-weight: 500;
-            padding: 8px 12px;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-        }
-
-        nav li a:hover {
-            background-color: var(--primary-light);
-            color: var(--primary);
-        }
-
-        .cta {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: var(--white);
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-        }
-
-        .cta:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-            color: var(--white);
-        }
-
-        .container {
-            max-width: var(--container);
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-
-        /* Hero Section */
-        .hero {
-            display: grid;
-            grid-template-columns: 1fr 480px;
-            gap: 60px;
-            align-items: center;
-            padding: 40px 0 60px;
-        }
-
-        .kicker {
-            display: inline-block;
-            padding: 8px 16px;
-            background-color: var(--primary-light);
-            color: var(--primary);
-            border-radius: 999px;
-            margin-bottom: 16px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            letter-spacing: 0.5px;
-        }
-
-        h2 {
-            font-size: 2.8rem;
-            color: var(--gray-900);
-            margin: 8px 0 16px;
-            line-height: 1.1;
-        }
-
-        p.lead {
-            font-size: 1.2rem;
-            color: var(--gray-700);
-            margin: 0 0 24px;
-        }
-
-        .price-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 20px;
-            background-color: var(--accent-light);
-            padding: 12px 20px;
-            border-radius: 12px;
-            color: var(--gray-900);
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-
-        .price-amount {
-            color: var(--accent);
-            font-size: 1.4rem;
-        }
-
-        /* Hero Right Card */
-        .hero-right {
-            background-color: var(--white);
-            padding: 30px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--gray-200);
-        }
-
-        .hero-right h3 {
-            color: var(--gray-900);
-            margin: 0 0 8px;
-            font-size: 1.4rem;
-        }
-
-        .badges {
-            display: flex;
-            gap: 12px;
-            margin-top: 20px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .badge {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            padding: 12px;
-            background-color: var(--gray-100);
-            border-radius: 10px;
-            flex: 1;
-            min-width: 120px;
-        }
-
-        .badge-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            display: grid;
-            place-items: center;
-            color: var(--white);
-            font-weight: 700;
-        }
-
-        .badge-icon.python {
-            background-color: #306998;
-        }
-
-        .badge-icon.r {
-            background-color: #276DC3;
-        }
-
-        .badge-icon.stata {
-            background-color: #1b6ea3;
-        }
-
-        .badge-icon.spss {
-            background-color: #e84a5f;
-        }
-
-        .badge-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .badge-text strong {
-            color: var(--gray-900);
-        }
-
-        .badge-text .small {
-            font-size: 0.8rem;
-            color: var(--gray-500);
-        }
-
-        /* Sections */
-        section {
-            padding: 60px 0;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        h3.section-title {
-            color: var(--gray-900);
-            margin: 0 0 12px;
-            font-size: 2rem;
-        }
-
-        .section-subtitle {
-            color: var(--gray-500);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: start;
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
-        .card {
-            background-color: var(--white);
-            padding: 24px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            border: 1px solid var(--gray-200);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .card h4 {
-            color: var(--gray-900);
-            margin: 0 0 12px;
-            font-size: 1.2rem;
-        }
-
-        ul.check {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        ul.check li {
-            position: relative;
-            padding-left: 28px;
-            margin-bottom: 10px;
-            color: var(--gray-700);
-        }
-
-        ul.check li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 20px;
-            height: 20px;
-            background-color: var(--primary);
-            border-radius: 50%;
-            color: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-        }
-
-        /* Methods Grid */
-        .methods {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-        }
-
-        .method {
-            padding: 16px;
-            border-radius: 10px;
-            background-color: var(--gray-100);
-            color: var(--gray-700);
-        }
-
-        .tools {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 12px;
-        }
-
-        .tool-pill {
-            background-color: var(--primary-light);
-            padding: 6px 12px;
-            border-radius: 999px;
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 0.8rem;
-        }
-
-        /* Pricing Section */
-        .pricing-table {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-top: 40px;
-        }
-
-        .pricing-card {
-            background-color: var(--white);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            border: 1px solid var(--gray-200);
-            overflow: hidden;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .pricing-header {
-            padding: 24px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: var(--white);
-            text-align: center;
-        }
-
-        .pricing-header h4 {
-            margin: 0 0 8px;
-            font-size: 1.4rem;
-        }
-
-        .pricing-price {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin: 0;
-        }
-
-        .pricing-body {
-            padding: 24px;
-        }
-
-        .pricing-features {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 24px;
-        }
-
-        .pricing-features li {
-            padding: 8px 0;
-            border-bottom: 1px solid var(--gray-200);
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .pricing-features li:last-child {
-            border-bottom: none;
-        }
-
-        .feature-name {
-            color: var(--gray-700);
-        }
-
-        .feature-price {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        .pricing-footer {
-            padding: 0 24px 24px;
-            text-align: center;
-        }
-
-        .btn {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: var(--white);
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-            color: var(--white);
-        }
-
-        .btn-secondary {
-            background: var(--gray-100);
-            color: var(--gray-700);
-        }
-
-        .btn-secondary:hover {
-            background: var(--gray-200);
-            color: var(--gray-900);
-        }
-
-        /* FAQ Accordion */
-        .faq {
-            margin-top: 20px;
-        }
-
-        .faq-item {
-            margin-bottom: 16px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--gray-200);
-        }
-
-        .faq-question {
-            background-color: var(--white);
-            padding: 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            color: var(--gray-900);
-            transition: background-color 0.2s ease;
-        }
-
-        .faq-question:hover {
-            background-color: var(--gray-100);
-        }
-
-        .faq-answer {
-            padding: 0 20px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-            background-color: var(--white);
-        }
-
-        .faq-answer.active {
-            padding: 20px;
-            max-height: 500px;
-        }
-
-        /* Contact */
-        .contact {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            justify-content: space-between;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            padding: 40px;
-            border-radius: var(--radius);
-            color: var(--white);
-        }
-
-        .contact-text h3 {
-            margin: 0 0 8px;
-            color: var(--white);
-        }
-
-        .contact-text p {
-            margin: 0;
-            opacity: 0.9;
-        }
-
-        .contact-action {
-            text-align: right;
-        }
-
-        .contact-price {
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin-top: 6px;
-        }
-
-        .btn-light {
-            background: var(--white);
-            color: var(--primary);
-        }
-
-        .btn-light:hover {
-            background: var(--gray-100);
-            color: var(--primary-dark);
-        }
-
-        footer {
-            padding: 40px 0;
-            color: var(--gray-500);
-            border-top: 1px solid var(--gray-200);
-            background-color: var(--gray-100);
-        }
-
-        .footer-inner {
-            max-width: var(--container);
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .hero {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .pricing-table {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .grid-2, .grid-3 {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            h2 {
-                font-size: 2rem;
-            }
-            
-            .pricing-table {
-                grid-template-columns: 1fr;
-            }
-            
-            nav ul {
-                display: none;
-            }
-            
-            .contact {
-                flex-direction: column;
-                text-align: center;
-                gap: 24px;
-            }
-            
-            .contact-action {
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-right {
-                padding: 20px;
-            }
-            
-            .badges {
-                gap: 8px;
-            }
-            
-            .badge {
-                min-width: calc(50% - 6px);
-            }
-        }
-
-        /* Small helpers */
-        .muted {
-            color: var(--gray-500);
-        }
-        
-        .small {
-            font-size: 0.9rem;
-            color: var(--gray-500);
-        }
-        
-        .text-center {
-            text-align: center;
-        }
-        
-        .mt-4 {
-            margin-top: 24px;
-        }
-        
-        .mb-4 {
-            margin-bottom: 24px;
-        }
-    </style>
+    <meta name="description"
+        content="Étude statistique complète pour thèse, mémoire ou article. PhD en Data Mining — Python, R, STATA, SPSS. À partir de 5000 DA.">
+        <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest"> <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header>
         <div class="nav">
@@ -691,9 +43,10 @@
         <!-- HERO -->
         <section class="hero" id="top">
             <div class="hero-left">
-                <span class="kicker">Étude statistique complète</span>
+                <span class="kicker large">Étude statistique complète</span>
                 <h2>Analyse de données pour thèse, mémoire ou article de recherche</h2>
-                <p class="lead">Analyse complète, interprétation académique et livrables prêts pour soutenance ou publication. Résultats clairs, fiables et scientifiquement rigoureux.</p>
+                <p class="lead">Analyse complète, interprétation académique et livrables prêts pour soutenance ou
+                    publication. Résultats clairs, fiables et scientifiquement rigoureux.</p>
 
                 <div class="price-badge">
                     À partir de <span class="price-amount">5000 DA</span>
@@ -739,781 +92,603 @@
                 </div>
 
                 <p class="small" style="margin-top:16px">
-                    Services : nettoyage, analyses statistiques, modèles ML, visualisations, rapport académique & support jusqu'à la soutenance.
+                    Services : nettoyage, analyses statistiques, modèles ML, visualisations, rapport académique &
+                    support jusqu'à la soutenance.
                 </p>
             </aside>
         </section>
 
-<!-- SERVICES detailed -->
-<section id="services">
+        <!-- SERVICES detailed -->
+        <section id="services">
+            <div class="section-header">
+                <h3 class="section-title">Services d'Analyse de Données</h3>
+                <p class="section-subtitle">Solutions complètes adaptées à vos besoins académiques et professionnels</p>
+            </div>
+
+            <div class="services-container">
+                <!-- Service Cards -->
+                <div class="service-cards">
+                    <div class="service-card">
+                        <div class="service-icon">📊</div>
+                        <h4>Analyse Académique</h4>
+                        <p class="service-desc">Support complet pour vos travaux de recherche universitaires</p>
+                        <ul class="service-features">
+                            <li>Mémoire de Master (M1/M2)</li>
+                            <li>Thèse de Doctorat</li>
+                            <li>Articles scientifiques</li>
+                            <li>Pré-soutenance et simulation</li>
+                            <li>Conformité aux standards académiques</li>
+                        </ul>
+                        <div class="service-highlight">
+                            <span class="highlight-text">Livrable principal:</span>
+                            <span>Rapport détaillé + présentation</span>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">🔬</div>
+                        <h4>Analyse Professionnelle</h4>
+                        <p class="service-desc">Solutions data-driven pour entreprises et chercheurs</p>
+                        <ul class="service-features">
+                            <li>Études de marché</li>
+                            <li>Analyse d'impact</li>
+                            <li>Projets de recherche appliquée</li>
+                            <li>Data mining et exploration</li>
+                            <li>Tableaux de bord interactifs</li>
+                        </ul>
+                        <div class="service-highlight">
+                            <span class="highlight-text">Livrable principal:</span>
+                            <span>Rapport exécutif + visualisations</span>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">⚡</div>
+                        <h4>Analyse Express</h4>
+                        <p class="service-desc">Solutions rapides pour délais serrés</p>
+                        <ul class="service-features">
+                            <li>Analyse préliminaire</li>
+                            <li>Validation d'hypothèses</li>
+                            <li>Graphiques rapides</li>
+                            <li>Consultation ponctuelle</li>
+                            <li>Feedback immédiat</li>
+                        </ul>
+                        <div class="service-highlight">
+                            <span class="highlight-text">Livrable principal:</span>
+                            <span>Rapport synthétique + recommendations</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Process Timeline -->
+                <div class="process-timeline">
+                    <h4>Processus de Collaboration</h4>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-marker">1</div>
+                            <div class="timeline-content">
+                                <h5>Diagnostic Initial</h5>
+                                <p>Évaluation de vos données et objectifs</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker">2</div>
+                            <div class="timeline-content">
+                                <h5>Plan d'Analyse</h5>
+                                <p>Proposition méthodologique détaillée</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker">3</div>
+                            <div class="timeline-content">
+                                <h5>Exécution</h5>
+                                <p>Nettoyage, analyse et modélisation</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker">4</div>
+                            <div class="timeline-content">
+                                <h5>Validation</h5>
+                                <p>Revue conjointe des résultats</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker">5</div>
+                            <div class="timeline-content">
+                                <h5>Livraison</h5>
+                                <p>Rapport final et support post-livraison</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Add this section after METHODS or before PRICING -->
+<section id="gallery" class="plot-gallery">
     <div class="section-header">
-        <h3 class="section-title">Services d'Analyse de Données</h3>
-        <p class="section-subtitle">Solutions complètes adaptées à vos besoins académiques et professionnels</p>
+        <h3 class="section-title">Galerie de Visualisations Statistiques</h3>
+        <p class="section-subtitle">Exemples de tests statistiques et analyses produites pour nos clients</p>
     </div>
 
-    <div class="services-container">
-        <!-- Service Cards -->
-        <div class="service-cards">
-            <div class="service-card">
-                <div class="service-icon">📊</div>
-                <h4>Analyse Académique</h4>
-                <p class="service-desc">Support complet pour vos travaux de recherche universitaires</p>
-                <ul class="service-features">
-                    <li>Mémoire de Master (M1/M2)</li>
-                    <li>Thèse de Doctorat</li>
-                    <li>Articles scientifiques</li>
-                    <li>Pré-soutenance et simulation</li>
-                    <li>Conformité aux standards académiques</li>
-                </ul>
-                <div class="service-highlight">
-                    <span class="highlight-text">Livrable principal:</span>
-                    <span>Rapport détaillé + présentation</span>
+    <div class="gallery-container">
+        <div class="gallery-track" id="gallery-track">
+            <div class="gallery-item">
+                <img src="statistical_plots/01_t_test_comparison.png"
+                    alt="Test t de Student - Comparaison de groupes" loading="lazy">
+                <div class="gallery-caption">
+                    <h4>Test t de Student</h4>
+                    <p>Comparaison des distributions entre deux groupes indépendants avec test de significativité</p>
                 </div>
             </div>
-
-            <div class="service-card">
-             
-                <div class="service-icon">🔬</div>
-                <h4>Analyse Professionnelle</h4>
-                <p class="service-desc">Solutions data-driven pour entreprises et chercheurs</p>
-                <ul class="service-features">
-                    <li>Études de marché</li>
-                    <li>Analyse d'impact</li>
-                    <li>Projets de recherche appliquée</li>
-                    <li>Data mining et exploration</li>
-                    <li>Tableaux de bord interactifs</li>
-                </ul>
-                <div class="service-highlight">
-                    <span class="highlight-text">Livrable principal:</span>
-                    <span>Rapport exécutif + visualisations</span>
+            <div class="gallery-item">
+                <img src="statistical_plots/02_anova_test.png" alt="ANOVA - Analyse de variance" loading="lazy">
+                <div class="gallery-caption">
+                    <h4>Analyse de Variance (ANOVA)</h4>
+                    <p>Comparaison des moyennes entre plusieurs traitements avec visualisation des outliers</p>
                 </div>
             </div>
-
-            <div class="service-card">
-                <div class="service-icon">⚡</div>
-                <h4>Analyse Express</h4>
-                <p class="service-desc">Solutions rapides pour délais serrés</p>
-                <ul class="service-features">
-                    <li>Analyse préliminaire</li>
-                    <li>Validation d'hypothèses</li>
-                    <li>Graphiques rapides</li>
-                    <li>Consultation ponctuelle</li>
-                    <li>Feedback immédiat</li>
-                </ul>
-                <div class="service-highlight">
-                    <span class="highlight-text">Livrable principal:</span>
-                    <span>Rapport synthétique + recommendations</span>
+            <div class="gallery-item">
+                <img src="statistical_plots/03_chi_square_test.png" alt="Test du Chi-carré" loading="lazy">
+                <div class="gallery-caption">
+                    <h4>Test du Chi-carré</h4>
+                    <p>Analyse d'indépendance entre variables catégorielles avec heatmap des fréquences observées</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="statistical_plots/04_correlation_analysis.png" alt="Analyse de corrélation"
+                    loading="lazy">
+                <div class="gallery-caption">
+                    <h4>Corrélation de Pearson</h4>
+                    <p>Analyse de la relation linéaire entre variables avec droite de régression et intervalles</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="statistical_plots/05_mann_whitney_test.png" alt="Test de Mann-Whitney" loading="lazy">
+                <div class="gallery-caption">
+                    <h4>Test de Mann-Whitney</h4>
+                    <p>Comparaison non-paramétrique entre deux groupes avec ECDF et distributions</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="statistical_plots/06_normality_test.png" alt="Test de normalité" loading="lazy">
+                <div class="gallery-caption">
+                    <h4>Test de Normalité</h4>
+                    <p>Vérification de la normalité des données avec Q-Q plot et test de Shapiro-Wilk</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="statistical_plots/07_kruskal_wallis_test.png" alt="Test de Kruskal-Wallis" loading="lazy">
+                <div class="gallery-caption">
+                    <h4>Test de Kruskal-Wallis</h4>
+                    <p>Comparaison non-paramétrique de plusieurs groupes avec visualisation raincloud</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="statistical_plots/08_wilcoxon_test.png" alt="Test de Wilcoxon" loading="lazy">
+                <div class="gallery-caption">
+                    <h4>Test de Wilcoxon Apparié</h4>
+                    <p>Analyse des mesures avant-après avec différences et distributions comparées</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="statistical_plots/09_fishers_exact_test.png" alt="Test exact de Fisher" loading="lazy">
+                <div class="gallery-caption">
+                    <h4>Test Exact de Fisher</h4>
+                    <p>Analyse de proportions avec tableau de contingence et diagramme circulaire</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="statistical_plots/10_multiple_comparison.png" alt="Comparaisons multiples" loading="lazy">
+                <div class="gallery-caption">
+                    <h4>Comparaisons Multiples</h4>
+                    <p>Analyse ANOVA étendue avec violons, quartiles et dispersion des données</p>
                 </div>
             </div>
         </div>
 
-        <!-- Process Timeline -->
-        <div class="process-timeline">
-            <h4>Processus de Collaboration</h4>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-marker">1</div>
-                    <div class="timeline-content">
-                        <h5>Diagnostic Initial</h5>
-                        <p>Évaluation de vos données et objectifs</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker">2</div>
-                    <div class="timeline-content">
-                        <h5>Plan d'Analyse</h5>
-                        <p>Proposition méthodologique détaillée</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker">3</div>
-                    <div class="timeline-content">
-                        <h5>Exécution</h5>
-                        <p>Nettoyage, analyse et modélisation</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker">4</div>
-                    <div class="timeline-content">
-                        <h5>Validation</h5>
-                        <p>Revue conjointe des résultats</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker">5</div>
-                    <div class="timeline-content">
-                        <h5>Livraison</h5>
-                        <p>Rapport final et support post-livraison</p>
-                    </div>
-                </div>
+        <div class="gallery-controls">
+            <button class="gallery-prev" id="gallery-prev" aria-label="Image précédente">‹</button>
+            <button class="gallery-next" id="gallery-next" aria-label="Image suivante">›</button>
+        </div>
+
+        <div class="gallery-scrollbar">
+            <div class="scrollbar-track">
+                <div class="scrollbar-thumb" id="scrollbar-thumb"></div>
             </div>
         </div>
     </div>
 </section>
+        <!-- METHODS -->
+        <section id="methods">
+            <div class="section-header">
+                <h3 class="section-title">Méthodologies Statistiques</h3>
+                <p class="section-subtitle">Approches rigoureuses validées scientifiquement pour des résultats fiables
+                </p>
+            </div>
 
-<!-- METHODS -->
-<section id="methods">
-    <div class="section-header">
-        <h3 class="section-title">Méthodologies Statistiques</h3>
-        <p class="section-subtitle">Approches rigoureuses validées scientifiquement pour des résultats fiables</p>
-    </div>
-
-    <div class="methods-container">
-        <!-- Method Categories -->
-        <div class="method-categories">
-            <div class="category-card">
-                <div class="category-header">
-                    <div class="category-icon">📈</div>
-                    <h4>Statistiques Descriptives</h4>
-                </div>
-                <p class="category-desc">Compréhension et résumé de vos données</p>
-                <div class="method-list">
-                    <div class="method-item">
-                        <span class="method-name">Mesures de tendance centrale</span>
-                        <div class="method-details">
-                            <span class="method-tools">Moyenne, Médiane, Mode</span>
-                            <span class="method-complexity">Basique</span>
+            <div class="methods-container">
+                <!-- Method Categories -->
+                <div class="method-categories">
+                    <div class="category-card">
+                        <div class="category-header">
+                            <div class="category-icon">📈</div>
+                            <h4>
+                                <a href="Explanations/descriptives.html" target="_blank" class="explanation-link">
+                                    Statistiques Descriptives
+                                    <span class="explanation-icon" title="En savoir plus">?</span>
+                                </a>
+                            </h4>
+                        </div>
+                        <p class="category-desc">Compréhension et résumé de vos données</p>
+                        <div class="method-list">
+                            <div class="method-item">
+                                <span class="method-name">Mesures de tendance centrale</span>
+                                <div class="method-details">
+                                    <span class="method-tools">Moyenne, Médiane, Mode</span>
+                                    <span class="method-complexity">Basique</span>
+                                </div>
+                            </div>
+                            <div class="method-item">
+                                <span class="method-name">Mesures de dispersion</span>
+                                <div class="method-details">
+                                    <span class="method-tools">Écart-type, Variance, Étendue</span>
+                                    <span class="method-complexity">Basique</span>
+                                </div>
+                            </div>
+                            <div class="method-item">
+                                <span class="method-name">Analyses de distribution</span>
+                                <div class="method-details">
+                                    <span class="method-tools">Skewness, Kurtosis, QQ-plots</span>
+                                    <span class="method-complexity">Intermédiaire</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="method-item">
-                        <span class="method-name">Mesures de dispersion</span>
-                        <div class="method-details">
-                            <span class="method-tools">Écart-type, Variance, Étendue</span>
-                            <span class="method-complexity">Basique</span>
+
+                    <div class="category-card">
+                        <div class="category-header">
+                            <div class="category-icon">🔍</div>
+                            <h4>
+                                <a href="Explanations/tests.html" target="_blank" class="explanation-link">
+                                    Tests Statistiques
+                                    <span class="explanation-icon" title="En savoir plus">?</span>
+                                </a>
+                            </h4>
+                        </div>
+                        <p class="category-desc">Vérification rigoureuse des hypothèses</p>
+                        <div class="method-list">
+                            <div class="method-item">
+                                <span class="method-name">Tests paramétriques</span>
+                                <div class="method-details">
+                                    <span class="method-tools">Test t, ANOVA, Corrélation de Pearson</span>
+                                    <span class="method-complexity">Intermédiaire</span>
+                                </div>
+                            </div>
+                            <div class="method-item">
+                                <span class="method-name">Tests non-paramétriques</span>
+                                <div class="method-details">
+                                    <span class="method-tools">Mann-Whitney, Kruskal-Wallis, Spearman</span>
+                                    <span class="method-complexity">Intermédiaire</span>
+                                </div>
+                            </div>
+                            <div class="method-item">
+                                <span class="method-name">Analyses de variance</span>
+                                <div class="method-details">
+                                    <span class="method-tools">ANCOVA, MANOVA, ANOVA répétée</span>
+                                    <span class="method-complexity">Avancé</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="method-item">
-                        <span class="method-name">Analyses de distribution</span>
-                        <div class="method-details">
-                            <span class="method-tools">Skewness, Kurtosis, QQ-plots</span>
-                            <span class="method-complexity">Intermédiaire</span>
+
+                    <div class="category-card">
+                        <div class="category-header">
+                            <div class="category-icon">📊</div>
+                            <h4>
+                                <a href="Explanations/analysiMulti.html" target="_blank" class="explanation-link">
+                                    Analyses Multivariées
+                                    <span class="explanation-icon" title="En savoir plus">?</span>
+                                </a>
+                            </h4>
+                        </div>
+                        <p class="category-desc">Exploration des relations complexes entre variables</p>
+                        <div class="method-list">
+                            <div class="method-item">
+                                <span class="method-name">Analyses factorielles</span>
+                                <div class="method-details">
+                                    <span class="method-tools">ACP, AFC, Analyse des correspondances</span>
+                                    <span class="method-complexity">Avancé</span>
+                                </div>
+                            </div>
+                            <div class="method-item">
+                                <span class="method-name">Modélisation structurelle</span>
+                                <div class="method-details">
+                                    <span class="method-tools">SEM, EFA, CFA, Modèles de mesure</span>
+                                    <span class="method-complexity">Expert</span>
+                                </div>
+                            </div>
+                            <div class="method-item">
+                                <span class="method-name">Analyses de classification</span>
+                                <div class="method-details">
+                                    <span class="method-tools">Clustering, LDA, Analyse discriminante</span>
+                                    <span class="method-complexity">Avancé</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="category-card">
+                        <div class="category-header">
+                            <div class="category-icon">🤖</div>
+                            <h4>
+                                <a href="Explanations/ML.html" target="_blank" class="explanation-link">
+                                    Machine Learning
+                                    <span class="explanation-icon" title="En savoir plus">?</span>
+                                </a>
+                            </h4>
+                        </div>
+                        <p class="category-desc">Modélisation prédictive et intelligence artificielle</p>
+                        <div class="method-list">
+                            <div class="method-item">
+                                <span class="method-name">Régression</span>
+                                <div class="method-details">
+                                    <span class="method-tools">Linéaire, Logistique, Ridge, Lasso</span>
+                                    <span class="method-complexity">Intermédiaire</span>
+                                </div>
+                            </div>
+                            <div class="method-item">
+                                <span class="method-name">Classification</span>
+                                <div class="method-details">
+                                    <span class="method-tools">Arbres, Forêts, SVM, Réseaux de neurones</span>
+                                    <span class="method-complexity">Avancé</span>
+                                </div>
+                            </div>
+                            <div class="method-item">
+                                <span class="method-name">Clustering</span>
+                                <div class="method-details">
+                                    <span class="method-tools">K-means, DBSCAN, Hiérarchique</span>
+                                    <span class="method-complexity">Avancé</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tools & Technologies -->
+                <div class="tools-section">
+                    <h4>Outils & Technologies Maîtrisés</h4>
+                    <div class="tools-grid">
+                        <div class="tool-category">
+                            <h5>Environnements Statistiques</h5>
+                            <div class="tool-items">
+                                <span class="tool-item primary">
+                                    <a href="Explanations/python.html" target="_blank" class="explanation-link">
+                                        Python
+                                        <span class="explanation-icon" title="En savoir plus">?</span>
+                                    </a>
+                                </span>
+                                <span class="tool-item primary">R Studio</span>
+                                <span class="tool-item secondary">SPSS</span>
+                                <span class="tool-item secondary">STATA</span>
+                            </div>
+                        </div>
+                        <div class="tool-category">
+                            <h5>Visualisation & Reporting</h5>
+                            <div class="tool-items">
+                                <span class="tool-item primary">ggplot2</span>
+                                <span class="tool-item primary">Matplotlib/Seaborn</span>
+                                <span class="tool-item tertiary">LaTeX</span>
+                                <span class="tool-item tertiary">Jupyter Notebook</span>
+                                <span class="tool-item tertiary">R Markdown</span>
+                            </div>
+                        </div>
+                        <div class="tool-category">
+                            <h5>Machine Learning</h5>
+                            <div class="tool-items">
+                                <span class="tool-item primary">scikit-learn</span>
+                                <span class="tool-item primary">TensorFlow</span>
+                                <span class="tool-item secondary">mlr3</span>
+                                <span class="tool-item tertiary">XGBoost</span>
+                                <span class="tool-item tertiary">LightGBM</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="category-card">
-                <div class="category-header">
-                    <div class="category-icon">🔍</div>
-                    <h4>Tests Statistiques</h4>
-                </div>
-                <p class="category-desc">Vérification rigoureuse des hypothèses</p>
-                <div class="method-list">
-                    <div class="method-item">
-                        <span class="method-name">Tests paramétriques</span>
-                        <div class="method-details">
-                            <span class="method-tools">Test t, ANOVA, Corrélation de Pearson</span>
-                            <span class="method-complexity">Intermédiaire</span>
-                        </div>
-                    </div>
-                    <div class="method-item">
-                        <span class="method-name">Tests non-paramétriques</span>
-                        <div class="method-details">
-                            <span class="method-tools">Mann-Whitney, Kruskal-Wallis, Spearman</span>
-                            <span class="method-complexity">Intermédiaire</span>
-                        </div>
-                    </div>
-                    <div class="method-item">
-                        <span class="method-name">Analyses de variance</span>
-                        <div class="method-details">
-                            <span class="method-tools">ANCOVA, MANOVA, ANOVA répétée</span>
-                            <span class="method-complexity">Avancé</span>
-                        </div>
-                    </div>
-                </div>
+        <!-- PRICING -->
+        <section id="pricing">
+            <div class="section-header">
+                <h3 class="section-title">Tarification Détaillée</h3>
+                <p class="section-subtitle">Des options flexibles adaptées à vos besoins et à votre budget</p>
             </div>
 
-            <div class="category-card">
-                <div class="category-header">
-                    <div class="category-icon">📊</div>
-                    <h4>Analyses Multivariées</h4>
-                </div>
-                <p class="category-desc">Exploration des relations complexes entre variables</p>
-                <div class="method-list">
-                    <div class="method-item">
-                        <span class="method-name">Analyses factorielles</span>
-                        <div class="method-details">
-                            <span class="method-tools">ACP, AFC, Analyse des correspondances</span>
-                            <span class="method-complexity">Avancé</span>
-                        </div>
+            <div class="pricing-table">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h4>Essentiel</h4>
+                        <div class="pricing-price">5000 DA</div>
+                        <p class="small">Package de base</p>
                     </div>
-                    <div class="method-item">
-                        <span class="method-name">Modélisation structurelle</span>
-                        <div class="method-details">
-                            <span class="method-tools">SEM, EFA, CFA, Modèles de mesure</span>
-                            <span class="method-complexity">Expert</span>
-                        </div>
+                    <div class="pricing-body">
+                        <ul class="pricing-features">
+                            <li>
+                                <span class="feature-name">Jeu de données (≤ 1000 observations)</span>
+                                <span class="feature-price">Inclus</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">Statistiques descriptives</span>
+                                <span class="feature-price">Inclus</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">
+                                    <a href="Explanations/tests.html" target="_blank" class="explanation-link">
+                                        Tests statistiques (jusqu'à 3)
+                                        <span class="explanation-icon" title="En savoir plus">?</span>
+                                    </a>
+                                </span>
+                                <span class="feature-price">Inclus</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">Graphiques (jusqu'à 5)</span>
+                                <span class="feature-price">Inclus</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">Rapport d'analyse</span>
+                                <span class="feature-price">Inclus</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">Dataset supplémentaire (+1000 obs)</span>
+                                <span class="feature-price">+1500 DA</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">
+                                    <a href="Explanations/tests.html" target="_blank" class="explanation-link">
+                                        Tests statistiques supplémentaire
+                                        <span class="explanation-icon" title="En savoir plus">?</span>
+                                    </a>
+                                </span>
+                                <span class="feature-price">+500 DA</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">Graphique supplémentaire</span>
+                                <span class="feature-price">+300 DA</span>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="method-item">
-                        <span class="method-name">Analyses de classification</span>
-                        <div class="method-details">
-                            <span class="method-tools">Clustering, LDA, Analyse discriminante</span>
-                            <span class="method-complexity">Avancé</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tools & Technologies -->
-        <div class="tools-section">
-            <h4>Outils & Technologies Maîtrisés</h4>
-            <div class="tools-grid">
-                <div class="tool-category">
-                    <h5>Environnements Statistiques</h5>
-                    <div class="tool-items">
-                        <span class="tool-item primary">R Studio</span>
-                        <span class="tool-item primary">Python</span>
-                        <span class="tool-item secondary">SPSS</span>
-                        <span class="tool-item secondary">STATA</span>
-
+                    <div class="pricing-footer">
+                        <a href="contact.html?plan=Essentiel" class="btn">Choisir ce plan</a>
                     </div>
                 </div>
-                <div class="tool-category">
-                    <h5>Visualisation & Reporting</h5>
-                    <div class="tool-items">
-                        <span class="tool-item primary">ggplot2</span>
-                        <span class="tool-item primary">Matplotlib/Seaborn</span>
-                        <span class="tool-item tertiary">LaTeX</span>
-                        <span class="tool-item tertiary">Jupyter Notebook</span>
-                        <span class="tool-item tertiary">R Markdown</span>
+
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h4>Avancé</h4>
+                        <div class="pricing-price">9500 DA</div>
+                        <p class="small">Le plus populaire</p>
+                    </div>
+                    <div class="pricing-body">
+                        <ul class="pricing-features">
+                            <li>
+                                <span class="feature-name">Jeu de données (≤ 5000 observations)</span>
+                                <span class="feature-price">Inclus</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">Statistiques descriptives</span>
+                                <span class="feature-price">Inclus</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">
+                                    <a href="Explanations/tests.html" target="_blank" class="explanation-link">
+                                        Tests statistiques (jusqu'à 8)
+                                        <span class="explanation-icon" title="En savoir plus">?</span>
+                                    </a>
+                                </span>
+                                <span class="feature-price">Inclus</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">Graphiques (jusqu'à 10)</span>
+                                <span class="feature-price">Inclus</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">Rapport d'analyse détaillé</span>
+                                <span class="feature-price">Inclus</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">
+                                    <a href="Explanations/analysiMulti.html" target="_blank" class="explanation-link">
+                                        Analyses multivariées
+                                        <span class="explanation-icon" title="En savoir plus">?</span>
+                                    </a>
+                                </span>
+                                <span class="feature-price">Inclus</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">Dataset supplémentaire (+5000 obs)</span>
+                                <span class="feature-price">+2000 DA</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">
+                                    <a href="Explanations/tests.html" target="_blank" class="explanation-link">
+                                        Test statistique supplémentaire
+                                        <span class="explanation-icon" title="En savoir plus">?</span>
+                                    </a>
+                                </span>
+                                <span class="feature-price">+400 DA</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">Graphique supplémentaire</span>
+                                <span class="feature-price">+250 DA</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pricing-footer">
+                        <a href="contact.html?plan=Avancé" class="btn">Choisir ce plan</a>
                     </div>
                 </div>
-                <div class="tool-category">
-                    <h5>Machine Learning</h5>
-                    <div class="tool-items">
-                        <span class="tool-item primary">scikit-learn</span>
-                        <span class="tool-item primary">TensorFlow</span>
-                        <span class="tool-item secondary">mlr3</span>
-                        <span class="tool-item tertiary">XGBoost</span>
-                        <span class="tool-item tertiary">LightGBM</span>
+
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h4>Complet</h4>
+                        <div class="pricing-price">25000 DA</div>
+                        <p class="small">Solution sur mesure</p>
+                    </div>
+                    <div class="pricing-body">
+                        <ul class="pricing-features">
+                            <li>
+                                <span class="feature-name">Jeu de données (illimité)</span>
+                                <span class="feature-price">Inclus</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">Toutes analyses statistiques</span>
+                                <span class="feature-price">Inclus</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">Graphiques (illimité)</span>
+                                <span class="feature-price">Inclus</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">Rapport complet et présentation</span>
+                                <span class="feature-price">Inclus</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">
+                                    <a href="Explanations/analysiMulti.html" target="_blank" class="explanation-link">
+                                        Analyses multivariées avancées
+                                        <span class="explanation-icon" title="En savoir plus">?</span>
+                                    </a>
+                                </span>
+                                <span class="feature-price">Inclus</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">
+                                    <a href="Explanations/ML.html" target="_blank" class="explanation-link">
+                                        Modélisation prédictive
+                                        <span class="explanation-icon" title="En savoir plus">?</span>
+                                    </a>
+                                </span>
+                                <span class="feature-price">Inclus</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">Support jusqu'à la soutenance</span>
+                                <span class="feature-price">Inclus</span>
+                            </li>
+                            <li>
+                                <span class="feature-name">Révisions illimitées</span>
+                                <span class="feature-price">Inclus</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pricing-footer">
+                        <a href="contact.html?plan=Complet" class="btn">Choisir ce plan</a>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
 
-<style>
-    /* Services Section Styles */
-    .services-container {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 40px;
-        margin-top: 40px;
-    }
-
-    .service-cards {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-    }
-
-    .service-card {
-        background: var(--white);
-        padding: 30px;
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        border: 1px solid var(--gray-200);
-        position: relative;
-        transition: all 0.3s ease;
-    }
-
-    .service-card:hover {
-        transform: translateY(-5px);
-        box-shadow: var(--shadow-lg);
-    }
-
-    .service-card.featured {
-        border: 2px solid var(--primary);
-        transform: scale(1.02);
-    }
-
-    .service-badge {
-        position: absolute;
-        top: -10px;
-        right: 20px;
-        background: var(--primary);
-        color: var(--white);
-        padding: 6px 12px;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        font-weight: 600;
-    }
-
-    .service-icon {
-        font-size: 2.5rem;
-        margin-bottom: 16px;
-    }
-
-    .service-card h4 {
-        color: var(--gray-900);
-        margin: 0 0 12px;
-        font-size: 1.3rem;
-    }
-
-    .service-desc {
-        color: var(--gray-600);
-        margin-bottom: 20px;
-        line-height: 1.5;
-    }
-
-    .service-features {
-        list-style: none;
-        padding: 0;
-        margin: 0 0 20px;
-    }
-
-    .service-features li {
-        padding: 8px 0;
-        border-bottom: 1px solid var(--gray-200);
-        position: relative;
-        padding-left: 20px;
-    }
-
-    .service-features li:before {
-        content: "✓";
-        position: absolute;
-        left: 0;
-        color: var(--primary);
-        font-weight: bold;
-    }
-
-    .service-features li:last-child {
-        border-bottom: none;
-    }
-
-    .service-highlight {
-        background: var(--primary-light);
-        padding: 12px;
-        border-radius: 8px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .highlight-text {
-        font-weight: 600;
-        color: var(--primary);
-    }
-
-    /* Process Timeline */
-    .process-timeline {
-        background: var(--white);
-        padding: 30px;
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        border: 1px solid var(--gray-200);
-    }
-
-    .process-timeline h4 {
-        color: var(--gray-900);
-        margin: 0 0 24px;
-        text-align: center;
-        font-size: 1.3rem;
-    }
-
-    .timeline {
-        position: relative;
-    }
-
-    .timeline:before {
-        content: '';
-        position: absolute;
-        left: 20px;
-        top: 0;
-        bottom: 0;
-        width: 2px;
-        background: var(--primary);
-    }
-
-    .timeline-item {
-        display: flex;
-        margin-bottom: 30px;
-        position: relative;
-    }
-
-    .timeline-item:last-child {
-        margin-bottom: 0;
-    }
-
-    .timeline-marker {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background: var(--primary);
-        color: var(--white);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 600;
-        margin-right: 20px;
-        flex-shrink: 0;
-        position: relative;
-        z-index: 2;
-    }
-
-    .timeline-content {
-        flex: 1;
-    }
-
-    .timeline-content h5 {
-        color: var(--gray-900);
-        margin: 0 0 8px;
-        font-size: 1.1rem;
-    }
-
-    .timeline-content p {
-        color: var(--gray-600);
-        margin: 0;
-        line-height: 1.5;
-    }
-
-    /* Methods Section Styles */
-    .methods-container {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 40px;
-        margin-top: 40px;
-    }
-
-    .method-categories {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-    }
-
-    .category-card {
-        background: var(--white);
-        padding: 24px;
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        border: 1px solid var(--gray-200);
-        transition: all 0.3s ease;
-    }
-
-    .category-card:hover {
-        transform: translateY(-3px);
-        box-shadow: var(--shadow-lg);
-    }
-
-    .category-header {
-        display: flex;
-        align-items: center;
-        margin-bottom: 16px;
-    }
-
-    .category-icon {
-        font-size: 2rem;
-        margin-right: 12px;
-    }
-
-    .category-card h4 {
-        color: var(--gray-900);
-        margin: 0;
-        font-size: 1.2rem;
-    }
-
-    .category-desc {
-        color: var(--gray-600);
-        margin-bottom: 20px;
-        line-height: 1.5;
-    }
-
-    .method-list {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-    }
-
-    .method-item {
-        padding: 12px;
-        background: var(--gray-100);
-        border-radius: 8px;
-        transition: all 0.2s ease;
-    }
-
-    .method-item:hover {
-        background: var(--primary-light);
-        transform: translateX(5px);
-    }
-
-    .method-name {
-        display: block;
-        font-weight: 600;
-        color: var(--gray-900);
-        margin-bottom: 6px;
-    }
-
-    .method-details {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .method-tools {
-        font-size: 0.85rem;
-        color: var(--gray-600);
-    }
-
-    .method-complexity {
-        font-size: 0.75rem;
-        padding: 2px 8px;
-        border-radius: 12px;
-        font-weight: 600;
-    }
-
-    .method-complexity:contains("Basique") {
-        background: var(--secondary-light);
-        color: var(--secondary);
-    }
-
-    .method-complexity:contains("Intermédiaire") {
-        background: var(--accent-light);
-        color: var(--accent);
-    }
-
-    .method-complexity:contains("Avancé") {
-        background: #fee2e2;
-        color: #dc2626;
-    }
-
-    .method-complexity:contains("Expert") {
-        background: #f3e8ff;
-        color: #7c3aed;
-    }
-
-    /* Tools Section */
-    .tools-section {
-        background: var(--white);
-        padding: 30px;
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        border: 1px solid var(--gray-200);
-    }
-
-    .tools-section h4 {
-        color: var(--gray-900);
-        margin: 0 0 24px;
-        text-align: center;
-        font-size: 1.3rem;
-    }
-
-    .tools-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .tool-category h5 {
-        color: var(--gray-800);
-        margin: 0 0 12px;
-        font-size: 1rem;
-    }
-
-    .tool-items {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-    }
-
-    .tool-item {
-        padding: 6px 12px;
-        border-radius: 20px;
-        font-size: 0.85rem;
-        font-weight: 500;
-    }
-
-    .tool-item.primary {
-        background: var(--primary-light);
-        color: var(--primary);
-    }
-
-    .tool-item.secondary {
-        background: var(--gray-200);
-        color: var(--gray-700);
-    }
-
-    .tool-item.tertiary {
-        background: var(--accent-light);
-        color: var(--accent);
-    }
-
-    /* Responsive Design */
-    @media (max-width: 1024px) {
-        .services-container,
-        .methods-container {
-            grid-template-columns: 1fr;
-        }
-
-        .service-cards,
-        .method-categories {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .service-cards,
-        .method-categories {
-            grid-template-columns: 1fr;
-        }
-    }
-</style>
-
-<!-- PRICING -->
-<section id="pricing">
-    <div class="section-header">
-        <h3 class="section-title">Tarification Détaillée</h3>
-        <p class="section-subtitle">Des options flexibles adaptées à vos besoins et à votre budget</p>
-    </div>
-
-    <div class="pricing-table">
-        <div class="pricing-card">
-            <div class="pricing-header">
-                <h4>Essentiel</h4>
-                <div class="pricing-price">5000 DA</div>
-                <p class="small">Package de base</p>
-            </div>
-            <div class="pricing-body">
-                <ul class="pricing-features">
-                    <li>
-                        <span class="feature-name">Jeu de données (≤ 1000 observations)</span>
-                        <span class="feature-price">Inclus</span>
-                    </li>
-                    <li>
-                        <span class="feature-name">Statistiques descriptives</span>
-                        <span class="feature-price">Inclus</span>
-                    </li>
-                    <li>
-                        <span class="feature-name">Tests statistiques (jusqu'à 3)</span>
-                        <span class="feature-price">Inclus</span>
-                    </li>
-                    <li>
-                        <span class="feature-name">Graphiques (jusqu'à 5)</span>
-                        <span class="feature-price">Inclus</span>
-                    </li>
-                    <li>
-                        <span class="feature-name">Rapport d'analyse</span>
-                        <span class="feature-price">Inclus</span>
-                    </li>
-                    <li>
-                        <span class="feature-name">Dataset supplémentaire (+1000 obs)</span>
-                        <span class="feature-price">+1500 DA</span>
-                    </li>
-                    <li>
-                        <span class="feature-name">Test statistique supplémentaire</span>
-                        <span class="feature-price">+500 DA</span>
-                    </li>
-                    <li>
-                        <span class="feature-name">Graphique supplémentaire</span>
-                        <span class="feature-price">+300 DA</span>
-                    </li>
-                </ul>
-            </div>
-            <div class="pricing-footer">
-                <a href="contact.html?plan=Essentiel" class="btn">Choisir ce plan</a>
-            </div>
-        </div>
-
-        <div class="pricing-card">
-            <div class="pricing-header">
-                <h4>Avancé</h4>
-                <div class="pricing-price">9500 DA</div>
-                <p class="small">Le plus populaire</p>
-            </div>
-            <div class="pricing-body">
-                <ul class="pricing-features">
-                    <li>
-                        <span class="feature-name">Jeu de données (≤ 5000 observations)</span>
-                        <span class="feature-price">Inclus</span>
-                    </li>
-                    <li>
-                        <span class="feature-name">Statistiques descriptives</span>
-                        <span class="feature-price">Inclus</span>
-                    </li>
-                    <li>
-                        <span class="feature-name">Tests statistiques (jusqu'à 8)</span>
-                        <span class="feature-price">Inclus</span>
-                    </li>
-                    <li>
-                        <span class="feature-name">Graphiques (jusqu'à 10)</span>
-                        <span class="feature-price">Inclus</span>
-                    </li>
-                    <li>
-                        <span class="feature-name">Rapport d'analyse détaillé</span>
-                        <span class="feature-price">Inclus</span>
-                    </li>
-                    <li>
-                        <span class="feature-name">Analyses multivariées</span>
-                        <span class="feature-price">Inclus</span>
-                    </li>
-                    <li>
-                        <span class="feature-name">Dataset supplémentaire (+5000 obs)</span>
-                        <span class="feature-price">+2000 DA</span>
-                    </li>
-                    <li>
-                        <span class="feature-name">Test statistique supplémentaire</span>
-                        <span class="feature-price">+400 DA</span>
-                    </li>
-                    <li>
-                        <span class="feature-name">Graphique supplémentaire</span>
-                        <span class="feature-price">+250 DA</span>
-                    </li>
-                </ul>
-            </div>
-            <div class="pricing-footer">
-                <a href="contact.html?plan=Avancé" class="btn">Choisir ce plan</a>
-            </div>
-        </div>
-
-        <div class="pricing-card">
-            <div class="pricing-header">
-                <h4>Complet</h4>
-                <div class="pricing-price">25000 DA</div>
-                <p class="small">Solution sur mesure</p>
-            </div>
-            <div class="pricing-body">
-                <ul class="pricing-features">
-                    <li>
-                        <span class="feature-name">Jeu de données (illimité)</span>
-                        <span class="feature-price">Inclus</span>
-                    </li>
-                    <li>
-                        <span class="feature-name">Toutes analyses statistiques</span>
-                        <span class="feature-price">Inclus</span>
-                    </li>
-                    <li>
-                        <span class="feature-name">Graphiques (illimité)</span>
-                        <span class="feature-price">Inclus</span>
-                    </li>
-                    <li>
-                        <span class="feature-name">Rapport complet et présentation</span>
-                        <span class="feature-price">Inclus</span>
-                    </li>
-                    <li>
-                        <span class="feature-name">Analyses multivariées avancées</span>
-                        <span class="feature-price">Inclus</span>
-                    </li>
-                    <li>
-                        <span class="feature-name">Modélisation prédictive</span>
-                        <span class="feature-price">Inclus</span>
-                    </li>
-                    <li>
-                        <span class="feature-name">Support jusqu'à la soutenance</span>
-                        <span class="feature-price">Inclus</span>
-                    </li>
-                    <li>
-                        <span class="feature-name">Révisions illimitées</span>
-                        <span class="feature-price">Inclus</span>
-                    </li>
-                </ul>
-            </div>
-            <div class="pricing-footer">
-                <a href="contact.html?plan=Complet" class="btn">Choisir ce plan</a>
-            </div>
-        </div>
-    </div>
-</section>
         <!-- REQUIREMENTS -->
         <section id="requirements">
             <div class="section-header">
@@ -1563,7 +738,9 @@
                         <span>+</span>
                     </div>
                     <div class="faq-answer">
-                        Oui — je prends en charge l'analyse, l'interprétation, la rédaction des résultats et la préparation de la soutenance. Nous pouvons établir un plan de travail détaillé avec des livrables intermédiaires pour s'assurer que tous les aspects de votre recherche sont couverts.
+                        Oui — je prends en charge l'analyse, l'interprétation, la rédaction des résultats et la
+                        préparation de la soutenance. Nous pouvons établir un plan de travail détaillé avec des
+                        livrables intermédiaires pour s'assurer que tous les aspects de votre recherche sont couverts.
                     </div>
                 </div>
 
@@ -1573,7 +750,9 @@
                         <span>+</span>
                     </div>
                     <div class="faq-answer">
-                        Je choisis et recommande les tests les plus adaptés à votre type de données et vos objectifs de recherche, et j'explique chaque étape. Nous pouvons discuter de votre problématique lors d'un premier échange gratuit pour déterminer ensemble la meilleure approche méthodologique.
+                        Je choisis et recommande les tests les plus adaptés à votre type de données et vos objectifs de
+                        recherche, et j'explique chaque étape. Nous pouvons discuter de votre problématique lors d'un
+                        premier échange gratuit pour déterminer ensemble la meilleure approche méthodologique.
                     </div>
                 </div>
 
@@ -1583,7 +762,9 @@
                         <span>+</span>
                     </div>
                     <div class="faq-answer">
-                        Oui — j'analyse des jeux de données de toute taille (surveys, expérimental, génomique, Excel, SPSS, CSV). Pour les très grands datasets, nous pouvons discuter des options de traitement et des éventuels ajustements tarifaires en fonction de la complexité.
+                        Oui — j'analyse des jeux de données de toute taille (surveys, expérimental, génomique, Excel,
+                        SPSS, CSV). Pour les très grands datasets, nous pouvons discuter des options de traitement et
+                        des éventuels ajustements tarifaires en fonction de la complexité.
                     </div>
                 </div>
 
@@ -1593,7 +774,9 @@
                         <span>+</span>
                     </div>
                     <div class="faq-answer">
-                        Absolument — confidentialité garantie. Les fichiers ne sont partagés que si vous le demandez. Je m'engage à respecter la confidentialité de vos données et à les supprimer après la fin de notre collaboration, selon vos préférences.
+                        Absolument — confidentialité garantie. Les fichiers ne sont partagés que si vous le demandez. Je
+                        m'engage à respecter la confidentialité de vos données et à les supprimer après la fin de notre
+                        collaboration, selon vos préférences.
                     </div>
                 </div>
 
@@ -1603,27 +786,70 @@
                         <span>+</span>
                     </div>
                     <div class="faq-answer">
-                        Oui, je propose des révisions jusqu'à ce que vous soyez satisfait des résultats. Le nombre de révisions inclus dépend du forfait choisi, et des révisions supplémentaires peuvent être ajoutées si nécessaire.
+                        Oui, je propose des révisions jusqu'à ce que vous soyez satisfait des résultats. Le nombre de
+                        révisions inclus dépend du forfait choisi, et des révisions supplémentaires peuvent être
+                        ajoutées si nécessaire.
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- CONTACT -->
-        <section id="contact">
-            <div class="contact">
-                <div class="contact-text">
-                    <h3>Prêt(e) à commencer votre projet ?</h3>
-                    <p>Contactez-moi pour un diagnostic gratuit et un devis personnalisé.</p>
+            <!-- Add these to your existing FAQ section -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    Qu'est-ce que les statistiques descriptives et pourquoi en ai-je besoin ?
+                    <span>+</span>
                 </div>
+                <div class="faq-answer">
+                    Les statistiques descriptives vous aident à comprendre et résumer vos données grâce à des mesures
+                    comme les moyennes, médianes, écarts-types. Elles constituent la base de toute analyse et sont
+                    essentielles pour présenter vos données de manière claire.
+                    <a href="Explanations/descriptives.html" target="_blank" class="explanation-link">En savoir plus sur
+                        les statistiques descriptives →</a>
+                </div>
+            </div>
 
-                <div class="contact-action">
-                    <div class="small">Prix indicatif à partir de</div>
-                    <div class="contact-price">5000 DA</div>
-                    <button class="btn btn-light mt-4">Me contacter</button>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Quand dois-je utiliser des analyses multivariées ?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Les analyses multivariées sont idéales lorsque vous étudiez les relations entre plusieurs variables
+                    simultanément. Par exemple, pour comprendre comment plusieurs facteurs influencent ensemble un
+                    résultat.
+                    <a href="Explanations/analysiMulti.html" target="_blank" class="explanation-link">Découvrir les
+                        analyses multivariées →</a>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Quelle est la différence entre tests paramétriques et non-paramétriques ?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Les tests paramétriques supposent une distribution normale des données, tandis que les
+                    non-paramétriques sont plus flexibles. Le choix dépend de vos données et de leurs caractéristiques.
+                    <a href="Explanations/tests.html" target="_blank" class="explanation-link">Comprendre les tests
+                        statistiques →</a>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Le machine learning est-il adapté à ma recherche académique ?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Le machine learning peut apporter une valeur ajoutée significative pour la prédiction, la
+                    classification ou la découverte de patterns complexes dans vos données.
+                    <a href="Explanations/ML.html" target="_blank" class="explanation-link">Explorer le machine learning
+                        →</a>
                 </div>
             </div>
         </section>
+
+
     </main>
 
     <footer>
@@ -1649,16 +875,16 @@
             question.addEventListener('click', () => {
                 const answer = question.nextElementSibling;
                 const isActive = answer.classList.contains('active');
-                
+
                 // Close all answers
                 document.querySelectorAll('.faq-answer').forEach(ans => {
                     ans.classList.remove('active');
                 });
-                
+
                 document.querySelectorAll('.faq-question span').forEach(span => {
                     span.textContent = '+';
                 });
-                
+
                 // If not active, open this one
                 if (!isActive) {
                     answer.classList.add('active');
@@ -1683,5 +909,8 @@
             // window.location.href = 'mailto:sabrina@example.com?subject=Demande%20d%27analyse%20de%20donn%C3%A9es';
         });
     </script>
+
+    <script src="script.js"></script>
 </body>
+
 </html>

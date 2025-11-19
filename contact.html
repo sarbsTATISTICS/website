@@ -12,7 +12,7 @@
             <div class="brand">
                 <div class="logo">S</div>
                 <div class="brand-text">
-                    <h1>Sabrina — PhD Data Mining</h1>
+                    <h1> PhD Data Mining</h1>
                     <div class="subtitle">Analyse de données • Python • R • SPSS • STATA</div>
                 </div>
             </div>
@@ -41,7 +41,7 @@
         </div>
 
         <!-- Form Container -->
-        <form id="analysis-request-form" action="https://formspree.io/f/xldzdqeo" method="POST">
+        <form id="analysis-request-form">
             <div class="form-container">
                 <div class="form-header">
                     <h2>Demande d'Analyse de Données</h2>
@@ -74,10 +74,7 @@
                             <input type="tel" id="phone" name="phone">
                         </div>
                         
-                        <div class="form-group">
-                            <label for="institution">Institution / Université</label>
-                            <input type="text" id="institution" name="institution">
-                        </div>
+
                         
                         <div class="form-footer">
                             <div></div>
@@ -116,10 +113,7 @@
                             <input type="date" id="deadline" name="deadline">
                         </div>
                         
-                        <div class="form-group">
-                            <label for="supervisorInfo">Informations sur le superviseur (le cas échéant)</label>
-                            <input type="text" id="supervisorInfo" name="supervisorInfo" placeholder="Nom, contact, exigences particulières">
-                        </div>
+
                         
                         <div class="form-footer">
                             <button type="button" class="btn btn-secondary" onclick="prevStep(2)">Précédent</button>
@@ -131,21 +125,41 @@
                     <div class="form-section" id="step-3">
                         <!-- Plan Selection Section -->
                         <div class="plan-selection">
-                            <h3 class="section-title">Choisissez Votre Plan</h3>
+                            <h3 class="section-title explanation-label">
+                                Choisissez Votre Plan
+                                <a href="index.html#pricing" target="_blank" class="explanation-link" title="Voir les détails des plans">
+                                    <span class="explanation-icon">?</span>
+                                </a>
+                            </h3>
                             <p class="section-subtitle">Sélectionnez le forfait qui correspond le mieux à vos besoins</p>
                             
                             <div class="plan-options">
-                                <div class="plan-option" data-plan="Essentiel">
+                                <div class="plan-option selected" data-plan="Essentiel">
                                     <div class="plan-radio">
                                         <input type="radio" id="plan-essentiel" name="selectedPlan" value="Essentiel" checked>
                                         <label for="plan-essentiel"></label>
                                     </div>
                                     <div class="plan-content">
-                                        <h4>Essentiel</h4>
+                                        <h4>
+                                            <a href="Explanations/descriptives.html" target="_blank" class="explanation-link">
+                                                Essentiel
+                                                <span class="explanation-icon">?</span>
+                                            </a>
+                                        </h4>
                                         <div class="plan-price">5000 DA</div>
                                         <ul class="plan-features-list">
-                                            <li>Statistiques descriptives</li>
-                                            <li>3 tests statistiques inclus</li>
+                                            <li>
+                                                <a href="Explanations/descriptives.html" target="_blank" class="explanation-link">
+                                                    Statistiques descriptives
+                                                    <span class="explanation-icon">?</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="Explanations/tests.html" target="_blank" class="explanation-link">
+                                                    3 tests statistiques inclus
+                                                    <span class="explanation-icon">?</span>
+                                                </a>
+                                            </li>
                                             <li>5 graphiques inclus</li>
                                             <li>≤ 1000 observations</li>
                                             <li>Rapport d'analyse complet</li>
@@ -160,15 +174,30 @@
                                         <label for="plan-avance"></label>
                                     </div>
                                     <div class="plan-content">
-                                        <h4>Avancé</h4>
+                                        <h4>
+                                            <a href="Explanations/analysiMulti.html" target="_blank" class="explanation-link">
+                                                Avancé
+                                                <span class="explanation-icon">?</span>
+                                            </a>
+                                        </h4>
                                         <div class="plan-price">9500 DA</div>
                                         <ul class="plan-features-list">
                                             <li>Tout le plan Essentiel</li>
-                                            <li>8 tests statistiques inclus</li>
+                                            <li>
+                                                <a href="Explanations/tests.html" target="_blank" class="explanation-link">
+                                                    8 tests statistiques inclus
+                                                    <span class="explanation-icon">?</span>
+                                                </a>
+                                            </li>
                                             <li>10 graphiques inclus</li>
                                             <li>≤ 5000 observations</li>
-                                            <li>Analyses multivariées</li>
-                                            <li>Rapport détaillé </li>
+                                            <li>
+                                                <a href="Explanations/analysiMulti.html" target="_blank" class="explanation-link">
+                                                    Analyses multivariées
+                                                    <span class="explanation-icon">?</span>
+                                                </a>
+                                            </li>
+                                            <li>Rapport détaillé</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -179,14 +208,24 @@
                                         <label for="plan-complet"></label>
                                     </div>
                                     <div class="plan-content">
-                                        <h4>Complet</h4>
+                                        <h4>
+                                            <a href="Explanations/ML.html" target="_blank" class="explanation-link">
+                                                Complet
+                                                <span class="explanation-icon">?</span>
+                                            </a>
+                                        </h4>
                                         <div class="plan-price">25000 DA</div>
                                         <ul class="plan-features-list">
                                             <li>Tout le plan Avancé</li>
                                             <li>Tests statistiques illimités</li>
                                             <li>Graphiques illimités</li>
                                             <li>Jeu de données illimité</li>
-                                            <li>Machine Learning inclus</li>
+                                            <li>
+                                                <a href="Explanations/ML.html" target="_blank" class="explanation-link">
+                                                    Machine Learning inclus
+                                                    <span class="explanation-icon">?</span>
+                                                </a>
+                                            </li>
                                             <li>Support jusqu'à soutenance</li>
                                             <li>Révisions illimitées</li>
                                         </ul>
@@ -228,31 +267,52 @@
                         <h3 class="section-title">Exigences d'analyse</h3>
                         
                         <div class="form-group">
-                            <label class="required">Type d'analyse souhaitée</label>
+                            <label class="required explanation-label">
+                                Type d'analyse souhaitée
+                                <a href="Explanations/descriptives.html" target="_blank" class="explanation-link" title="En savoir plus sur les types d'analyse">
+                                    <span class="explanation-icon">?</span>
+                                </a>
+                            </label>
                             <div class="checkbox-group">
                                 <div class="checkbox-item">
                                     <input type="checkbox" id="analysis_descriptive" name="analysisType" value="descriptive" data-price="0">
-                                    <label for="analysis_descriptive">Statistiques descriptives</label>
+                                    <label for="analysis_descriptive">
+                                        <a href="Explanations/descriptives.html" target="_blank" class="explanation-link">
+                                            Statistiques descriptives
+                                            <span class="explanation-icon">?</span>
+                                        </a>
+                                    </label>
                                     <span class="price-tag">Inclus</span>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="analysis_inferential" name="analysisType" value="inferential" data-price="500">
-                                    <label for="analysis_inferential">Tests statistiques inférentiels</label>
-                                    <span class="price-tag">+500 DA</span>
-                                </div>
+                               
                                 <div class="checkbox-item">
                                     <input type="checkbox" id="analysis_regression" name="analysisType" value="regression" data-price="800">
-                                    <label for="analysis_regression">Analyses de régression</label>
+                                    <label for="analysis_regression">
+                                        <a href="Explanations/reg.html" target="_blank" class="explanation-link">
+                                            Analyses de régression
+                                            <span class="explanation-icon">?</span>
+                                        </a>
+                                    </label>
                                     <span class="price-tag">+800 DA</span>
                                 </div>
                                 <div class="checkbox-item">
                                     <input type="checkbox" id="analysis_multivariate" name="analysisType" value="multivariate" data-price="1200">
-                                    <label for="analysis_multivariate">Analyses multivariées</label>
+                                    <label for="analysis_multivariate">
+                                        <a href="Explanations/analysiMulti.html" target="_blank" class="explanation-link">
+                                            Analyses multivariées
+                                            <span class="explanation-icon">?</span>
+                                        </a>
+                                    </label>
                                     <span class="price-tag">+1200 DA</span>
                                 </div>
                                 <div class="checkbox-item">
                                     <input type="checkbox" id="analysis_ml" name="analysisType" value="ml" data-price="2000">
-                                    <label for="analysis_ml">Machine Learning</label>
+                                    <label for="analysis_ml">
+                                        <a href="Explanations/ML.html" target="_blank" class="explanation-link">
+                                            Machine Learning
+                                            <span class="explanation-icon">?</span>
+                                        </a>
+                                    </label>
                                     <span class="price-tag">+2000 DA</span>
                                 </div>
                                 <div class="checkbox-item">
@@ -277,12 +337,22 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="specificTests">Tests statistiques spécifiques requis</label>
+                            <label for="specificTests" class="explanation-label">
+                                Tests statistiques spécifiques requis
+                                <a href="Explanations/tests.html" target="_blank" class="explanation-link" title="En savoir plus sur les tests statistiques">
+                                    <span class="explanation-icon">?</span>
+                                </a>
+                            </label>
                             <textarea id="specificTests" name="specificTests" placeholder="Ex: ANOVA, test t, chi-carré, régression logistique..."></textarea>
                         </div>
                         
                         <div class="form-group">
-                            <label for="softwarePreference">Logiciel préféré</label>
+                            <label for="softwarePreference" class="explanation-label">
+                                Logiciel préféré
+                                <a href="Explanations/python.html" target="_blank" class="explanation-link" title="En savoir plus sur les logiciels d'analyse">
+                                    <span class="explanation-icon">?</span>
+                                </a>
+                            </label>
                             <select id="softwarePreference" name="softwarePreference">
                                 <option value="">Aucune préférence</option>
                                 <option value="python">Python</option>
@@ -293,7 +363,12 @@
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="reportType">Type de rapport</label>
+                                <label for="reportType" class="explanation-label">
+                                    Type de rapport
+                                    <a href="index.html#services" target="_blank" class="explanation-link" title="Voir les exemples de rapports">
+                                        <span class="explanation-icon">?</span>
+                                    </a>
+                                </label>
                                 <select id="reportType" name="reportType" onchange="updatePricing()">
                                     <option value="word" data-price="0">Word</option>
                                     <option value="latex" data-price="500">LaTeX + PDF</option>
@@ -301,7 +376,12 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="codeDelivery">Livraison du code</label>
+                                <label for="codeDelivery" class="explanation-label">
+                                    Livraison du code
+                                    <a href="Explanations/python.html" target="_blank" class="explanation-link" title="En savoir plus sur les environnements de code">
+                                        <span class="explanation-icon">?</span>
+                                    </a>
+                                </label>
                                 <select id="codeDelivery" name="codeDelivery" onchange="updatePricing()">
                                     <option value="none" data-price="0">Pas nécessaire</option>
                                     <option value="python" data-price="0">Python</option>
@@ -352,8 +432,8 @@
                             <label for="urgency">Niveau d'urgence</label>
                             <select id="urgency" name="urgency" onchange="updatePricing()">
                                 <option value="normal" data-price="0">Standard (7-10 jours)</option>
-                                <option value="urgent" data-price="2000">Urgent (3-5 jours)</option>
-                                <option value="express" data-price="4000">Express (1-2 jours)</option>
+                                <option value="urgent" data-price="4000">Urgent (3-5 jours)</option>
+                                <option value="express" data-price="8000">Express (1-2 jours)</option>
                             </select>
                         </div>
                         
@@ -473,23 +553,17 @@
                             </div>
                         </div>
 
-                        <!-- Hidden fields for Formspree -->
-                        <input type="hidden" name="_subject" value="Nouvelle demande d'analyse de données">
-                        <input type="hidden" name="_replyto" id="form-email">
-                        <input type="hidden" name="total_price" id="form-total-price">
-                        <input type="hidden" name="selected_plan" id="form-selected-plan">
-                        <input type="hidden" name="_captcha" value="false">
-                        
+                       
                         <div class="form-footer">
                             <button type="button" class="btn btn-secondary" onclick="prevStep(4)">Précédent</button>
-                            <button type="submit" class="btn btn-success">
+                            <button type="button" class="btn btn-success" onclick="submitFormAJAX()">
                                 <span>Envoyer la demande</span>
                             </button>
                         </div>
                     </div>
 
                     <!-- Success Message -->
-                    <div class="success-message" id="success-message">
+                    <div class="success-message" id="success-message" style="display: none;">
                         <div class="success-icon">✓</div>
                         <h2>Demande envoyée avec succès!</h2>
                         <p>J'ai bien reçu votre demande d'analyse et je vous contacterai dans les 24 heures pour discuter des prochaines étapes.</p>
@@ -497,13 +571,21 @@
                         <button type="button" class="btn" onclick="goHome()">Retour à l'accueil</button>
                     </div>
                 </div>
+                <!-- Success Message - MOVED OUTSIDE form-body -->
+<div class="success-message" id="success-message" style="display: none;">
+    <div class="success-icon">✓</div>
+    <h2>Demande envoyée avec succès!</h2>
+    <p>J'ai bien reçu votre demande d'analyse et je vous contacterai dans les 24 heures pour discuter des prochaines étapes.</p>
+    <p>En attendant, vous pouvez préparer votre jeu de données si vous ne l'avez pas encore fait.</p>
+    <button type="button" class="btn" onclick="goHome()">Retour à l'accueil</button>
+</div>
             </div>
         </form>
     </main>
 
     <footer>
         <div class="footer-inner">
-            <div>© Sabrina — Analyse de données • PhD Data Mining</div>
+            <div>© Analyse de données • PhD Data Mining</div>
             <div class="small">Confidentialité garantie • Réponse sous 24h</div>
         </div>
     </footer>

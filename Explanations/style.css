@@ -1,0 +1,102 @@
+/* style.css */
+body {
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    margin: 24px;
+    color: #0b1220;
+    background: #f7f8fb;
+    line-height: 1.6;
+}
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 8px 20px rgba(11,18,32,0.06);
+    max-width: 1000px;
+    margin: 20px auto;
+}
+h1 { font-size: 32px; margin-bottom: 16px; color: #102a43; text-align: center; }
+h2 { font-size: 24px; color: #102a43; margin-top: 32px; padding-bottom: 8px; border-bottom: 2px solid #eef4ff; }
+h3 { font-size: 20px; color: #2d5aa0; margin-top: 24px; }
+h4 { font-size: 18px; color: #4A90E2; margin-top: 20px; }
+p { font-size: 16px; margin-bottom: 16px; }
+.example { 
+    background: #eef4ff; 
+    padding: 20px; 
+    border-radius: 10px; 
+    margin: 20px 0;
+    border-left: 4px solid #4A90E2;
+}
+.analogy { 
+    background: #f0f7ff; 
+    padding: 16px; 
+    border-radius: 8px; 
+    margin: 16px 0;
+    border-left: 4px solid #5B8FF9;
+}
+.benefit-box {
+    background: #f8fff0;
+    padding: 16px;
+    border-radius: 8px;
+    margin: 16px 0;
+    border-left: 4px solid #50E3C2;
+}
+.urgency-box {
+    background: #fff0f0;
+    padding: 16px;
+    border-radius: 8px;
+    margin: 16px 0;
+    border-left: 4px solid #FF6B6B;
+}
+ul { margin-left: 1.2em; line-height: 1.55; }
+li { margin-bottom: 8px; }
+.graph-container { height: 400px; margin: 20px 0; }
+.highlight { background: #fffacd; padding: 2px 4px; border-radius: 3px; }
+.tip { 
+    background: #fff0f0; 
+    padding: 12px; 
+    border-radius: 6px; 
+    margin: 16px 0;
+    border-left: 4px solid #FF6B6B;
+}
+.step-by-step { 
+    background: #f9f9ff; 
+    padding: 16px; 
+    border-radius: 8px; 
+    margin: 16px 0;
+    border-left: 4px solid #8A2BE2;
+}
+.cta-box {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin: 25px 0;
+    text-align: center;
+}
+.warning-box {
+    background: #fff8e6;
+    padding: 16px;
+    border-radius: 8px;
+    margin: 16px 0;
+    border-left: 4px solid #FFC107;
+}
+.reasons-list {
+    background: #f8faff;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+.reason-item {
+    background: white;
+    margin: 15px 0;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #4A90E2;
+}
+.method-card {
+    background: #f8faff;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    border: 2px solid #eef4ff;
+}
