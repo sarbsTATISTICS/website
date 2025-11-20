@@ -548,7 +548,7 @@ function isValidEmail(email) {
 
 // Redirect to home page
 function goHome() {
-    window.location.href = 'index.html';
+    window.location.href = 'website/index.html';
 }
 
 // Initialize the form
@@ -613,4 +613,5 @@ function printConfirmation() {
 
 function goHome() {
     window.location.href = '/'; // Adjust to your home page URL
+
 }
