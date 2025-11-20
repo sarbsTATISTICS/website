@@ -388,87 +388,92 @@ function updateSummary() {
         document.getElementById('summary-deadline').textContent = 'Non spécifié';
     }
 
-    // Data link
-    const dataLink = document.getElementById('dataLink').value;
-    if (dataLink) {
-        // Add data link to summary if needed
-    }
-
     // Plan and total price
     document.getElementById('summary-plan').textContent = planDisplayNames[window.currentPlan] || window.currentPlan;
     document.getElementById('summary-total-price').textContent = `${window.currentTotal || currentPlanConfig.basePrice} DA`;
 }
 
 // AJAX Form Submission
-function submitFormAJAX() {
-    // Update summary one last time before submission
+async function submitFormAJAX() {
+    // Update summary before submission
     updateSummary();
 
     // Show loading state
-    const submitBtn = document.querySelector('.btn-success');
+    const submitBtn = document.getElementById('submit-button');
     const originalText = submitBtn.innerHTML;
     submitBtn.innerHTML = '<span>Envoi en cours...</span>';
     submitBtn.disabled = true;
 
-    // Prepare form data
-    const formData = new FormData();
+    try {
+        // Prepare form data
+        const formData = new FormData();
 
-    // Add all form fields
-    const form = document.getElementById('analysis-request-form');
-    const formElements = form.elements;
+        // Add all form fields
+        const formElements = [
+            'firstName', 'lastName', 'email', 'phone', 'institution',
+            'projectType', 'projectTitle', 'researchQuestion', 'deadline',
+            'supervisorInfo', 'selectedPlan', 'specificTests', 'numTests',
+            'numGraphs', 'softwarePreference', 'dataDescription', 'dataSize',
+            'urgency', 'additionalRequirements', 'reportType', 'codeDelivery',
+            'presentationType', 'additionalSlides'
+        ];
 
-    for (let element of formElements) {
-        if (element.name && element.type !== 'file') {
-            if (element.type === 'checkbox' || element.type === 'radio') {
-                if (element.checked) {
-                    formData.append(element.name, element.value);
-                }
-            } else {
-                formData.append(element.name, element.value);
+        // Add standard form fields
+        formElements.forEach(fieldName => {
+            const element = document.getElementById(fieldName);
+            if (element && element.value) {
+                formData.append(fieldName, element.value);
             }
-        }
-    }
-
-    // Add Formspree specific fields
-    formData.append('_subject', 'Nouvelle demande d\'analyse de données');
-    formData.append('_replyto', document.getElementById('email').value);
-    formData.append('total_price', window.currentTotal || currentPlanConfig.basePrice);
-    formData.append('selected_plan', planDisplayNames[window.currentPlan] || window.currentPlan);
-    formData.append('_captcha', 'false');
-
-    // Send via AJAX
-    fetch('https://formspree.io/f/xldzdqeo', {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'Accept': 'application/json'
-        }
-    })
-        .then(response => {
-            if (response.ok) {
-                // Show success message
-                // In the success handler:
-                document.querySelectorAll('.form-section').forEach(section => {
-                    section.style.display = 'none';
-                });
-                document.getElementById('success-message').style.display = 'block';
-
-                // Scroll to top to show success message
-                window.scrollTo(0, 0);
-            } else {
-                return response.json().then(error => {
-                    throw new Error(error.error || 'Erreur lors de l\'envoi');
-                });
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Désolé, une erreur est survenue lors de l\'envoi de votre demande. Veuillez réessayer ou me contacter directement par email.');
-
-            // Reset button
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
         });
+
+        // Add analysis types
+        const analysisTypes = Array.from(document.querySelectorAll('input[name="analysisType"]:checked'))
+            .map(cb => cb.value)
+            .join(', ');
+        if (analysisTypes) {
+            formData.append('analysisTypes', analysisTypes);
+        }
+
+        // Add Formspree specific fields
+        formData.append('_subject', 'Nouvelle demande d\'analyse de données');
+        formData.append('_replyto', document.getElementById('email').value);
+        formData.append('total_price', window.currentTotal || currentPlanConfig.basePrice);
+        formData.append('selected_plan', planDisplayNames[window.currentPlan] || window.currentPlan);
+        formData.append('_captcha', 'false');
+
+        console.log('Sending form data to Formspree...');
+
+        // Send via AJAX
+        const response = await fetch('https://formspree.io/f/xldzdqeo', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            console.log('Form submitted successfully');
+            
+            // Hide the form and show success message
+            document.getElementById('analysis-request-form').style.display = 'none';
+            document.querySelector('.progress-bar').style.display = 'none';
+            document.getElementById('success-message').style.display = 'block';
+
+            // Scroll to top to show success message
+            window.scrollTo(0, 0);
+        } else {
+            const errorData = await response.json();
+            throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+        }
+    } catch (error) {
+        console.error('Form submission error:', error);
+        alert('Désolé, une erreur est survenue lors de l\'envoi de votre demande. Veuillez réessayer ou me contacter directement par email à sarb5057@gmail.com');
+
+        // Reset button
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    }
 }
 
 // Navigation between steps
@@ -578,6 +583,34 @@ document.addEventListener('DOMContentLoaded', function () {
         element.addEventListener('change', updatePricing);
     });
 
+    // Add event listener for submit button
+    document.getElementById('submit-button').addEventListener('click', submitFormAJAX);
+
     // Initialize pricing
     updatePricing();
 });
+
+function printConfirmation() {
+    const successMessage = document.getElementById('success-message');
+    const printContent = successMessage.innerHTML;
+    const originalContent = document.body.innerHTML;
+    
+    document.body.innerHTML = `
+        <div style="padding: 40px; font-family: Arial, sans-serif;">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <div style="font-size: 24px; font-weight: bold; color: #2d3748;">Confirmation de Demande</div>
+                <div style="color: #718096; margin-top: 10px;">${new Date().toLocaleDateString('fr-FR')}</div>
+            </div>
+            ${printContent}
+        </div>
+    `;
+    
+    window.print();
+    document.body.innerHTML = originalContent;
+    // Re-attach event listeners if needed
+    document.getElementById('success-message').style.display = 'block';
+}
+
+function goHome() {
+    window.location.href = '/'; // Adjust to your home page URL
+}

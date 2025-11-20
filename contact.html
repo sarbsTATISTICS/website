@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Demande d'Analyse — Sabrina, PhD</title>
     <link rel="stylesheet" href="contact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
 </head>
 <body>
     <header>
@@ -74,7 +76,10 @@
                             <input type="tel" id="phone" name="phone">
                         </div>
                         
-
+                        <div class="form-group">
+                            <label for="institution">Institution / Université</label>
+                            <input type="text" id="institution" name="institution">
+                        </div>
                         
                         <div class="form-footer">
                             <div></div>
@@ -113,7 +118,10 @@
                             <input type="date" id="deadline" name="deadline">
                         </div>
                         
-
+                        <div class="form-group">
+                            <label for="supervisorInfo">Informations sur le superviseur (le cas échéant)</label>
+                            <input type="text" id="supervisorInfo" name="supervisorInfo" placeholder="Nom, contact, exigences particulières">
+                        </div>
                         
                         <div class="form-footer">
                             <button type="button" class="btn btn-secondary" onclick="prevStep(2)">Précédent</button>
@@ -552,35 +560,125 @@
                                 <div class="summary-value total-price" id="summary-total-price">5000 DA</div>
                             </div>
                         </div>
-
-                       
+                        
                         <div class="form-footer">
                             <button type="button" class="btn btn-secondary" onclick="prevStep(4)">Précédent</button>
-                            <button type="button" class="btn btn-success" onclick="submitFormAJAX()">
+                            <button type="button" class="btn btn-success" id="submit-button">
                                 <span>Envoyer la demande</span>
                             </button>
                         </div>
                     </div>
-
-                    <!-- Success Message -->
-                    <div class="success-message" id="success-message" style="display: none;">
-                        <div class="success-icon">✓</div>
-                        <h2>Demande envoyée avec succès!</h2>
-                        <p>J'ai bien reçu votre demande d'analyse et je vous contacterai dans les 24 heures pour discuter des prochaines étapes.</p>
-                        <p>En attendant, vous pouvez préparer votre jeu de données si vous ne l'avez pas encore fait.</p>
-                        <button type="button" class="btn" onclick="goHome()">Retour à l'accueil</button>
-                    </div>
                 </div>
-                <!-- Success Message - MOVED OUTSIDE form-body -->
+            </div>
+        </form>
+
+        <!-- Success Message - Placed outside the form -->
 <div class="success-message" id="success-message" style="display: none;">
     <div class="success-icon">✓</div>
     <h2>Demande envoyée avec succès!</h2>
     <p>J'ai bien reçu votre demande d'analyse et je vous contacterai dans les 24 heures pour discuter des prochaines étapes.</p>
     <p>En attendant, vous pouvez préparer votre jeu de données si vous ne l'avez pas encore fait.</p>
-    <button type="button" class="btn" onclick="goHome()">Retour à l'accueil</button>
-</div>
+    
+    <!-- Section de confirmation -->
+    <div class="confirmation-notice">
+        <div class="confirmation-icon">⏰</div>
+        <div class="confirmation-text">
+            <h4>Vous n'avez pas reçu de confirmation ?</h4>
+            <p>Si vous ne recevez pas de réponse sous 24 heures, contactez-moi directement via l'un des canaux ci-dessous :</p>
+        </div>
+    </div>
+
+    <div class="contact-methods ultra-compact">
+        <!-- Email -->
+        <a href="mailto:sarb5057@gmail.com" class="contact-item">
+            <div class="contact-icon email">
+                <i class="fas fa-envelope"></i>
             </div>
-        </form>
+            <div class="contact-text">
+                <div class="contact-label">Email</div>
+                <div class="contact-detail">sarb5057@gmail.com</div>
+            </div>
+            <div class="contact-arrow">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </a>
+
+        <!-- WhatsApp -->
+        <a href="https://wa.me/213123456789" target="_blank" class="contact-item">
+            <div class="contact-icon whatsapp">
+                <i class="fab fa-whatsapp"></i>
+            </div>
+            <div class="contact-text">
+                <div class="contact-label">WhatsApp</div>
+                <div class="contact-detail">+213 123 456 789</div>
+            </div>
+            <div class="contact-arrow">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </a>
+
+        <!-- Téléphone -->
+        <a href="tel:+213123456789" class="contact-item">
+            <div class="contact-icon phone">
+                <i class="fas fa-phone-alt"></i>
+            </div>
+            <div class="contact-text">
+                <div class="contact-label">Téléphone</div>
+                <div class="contact-detail">+213 123 456 789</div>
+            </div>
+            <div class="contact-arrow">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </a>
+
+        <!-- Viber -->
+        <a href="viber://chat?number=213123456789" class="contact-item">
+            <div class="contact-icon viber">
+                <i class="fab fa-viber"></i>
+            </div>
+            <div class="contact-text">
+                <div class="contact-label">Viber</div>
+                <div class="contact-detail">+213 123 456 789</div>
+            </div>
+            <div class="contact-arrow">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </a>
+
+        <!-- Facebook -->
+        <a href="https://facebook.com/sabrina.datamining" target="_blank" class="contact-item">
+            <div class="contact-icon facebook">
+                <i class="fab fa-facebook-f"></i>
+            </div>
+            <div class="contact-text">
+                <div class="contact-label">Facebook</div>
+                <div class="contact-detail">Sabrina Data Mining</div>
+            </div>
+            <div class="contact-arrow">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </a>
+
+        <!-- Instagram -->
+        <a href="https://instagram.com/sabrina.datamining" target="_blank" class="contact-item">
+            <div class="contact-icon instagram">
+                <i class="fab fa-instagram"></i>
+            </div>
+            <div class="contact-text">
+                <div class="contact-label">Instagram</div>
+                <div class="contact-detail">@sabrina.datamining</div>
+            </div>
+            <div class="contact-arrow">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </a>
+    </div>
+
+    <div class="success-actions">
+        <button type="button" class="btn btn-primary" onclick="goHome()">Retour à l'accueil</button>
+       
+    </div>
+</div>
     </main>
 
     <footer>

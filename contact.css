@@ -1178,3 +1178,307 @@ input[type="file"]:focus {
 .success-message .btn:hover {
     background: #059669;
 }
+
+/* Enhanced Compact Contact Section */
+.contact-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 60px 0;
+    position: relative;
+}
+
+.contact-section .section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.contact-section .section-title {
+    color: #2d3748;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.contact-section .section-subtitle {
+    color: #718096;
+    font-size: 1.1rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Compact Contact Methods Grid */
+.contact-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 18px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e2e8f0;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 70px;
+}
+
+.contact-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.contact-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.contact-item:hover::before {
+    opacity: 1;
+}
+
+/* Compact Contact Icons */
+.contact-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-size: 1.2rem;
+    color: white;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.contact-item:hover .contact-icon {
+    transform: scale(1.05);
+}
+
+/* Specific Icon Colors */
+.contact-icon.email {
+    background: linear-gradient(135deg, #ea4335, #d14836);
+}
+
+.contact-icon.whatsapp {
+    background: linear-gradient(135deg, #25d366, #128c7e);
+}
+
+.contact-icon.viber {
+    background: linear-gradient(135deg, #7360f2, #5d4ae4);
+}
+
+.contact-icon.facebook {
+    background: linear-gradient(135deg, #1877f2, #0d66c2);
+}
+
+.contact-icon.instagram {
+    background: linear-gradient(135deg, #e4405f, #c13584);
+}
+
+.contact-icon.phone {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+/* Compact Contact Text */
+.contact-text {
+    flex: 1;
+    min-width: 0; /* Prevents text overflow */
+}
+
+.contact-label {
+    font-size: 0.8rem;
+    color: #718096;
+    font-weight: 600;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.contact-detail {
+    font-size: 0.95rem;
+    color: #2d3748;
+    font-weight: 600;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.contact-description {
+    font-size: 0.75rem;
+    color: #a0aec0;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Compact Contact Arrow */
+.contact-arrow {
+    color: #cbd5e0;
+    font-size: 0.9rem;
+    margin-left: 10px;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.contact-item:hover .contact-arrow {
+    transform: translateX(3px);
+    color: #667eea;
+}
+
+/* Compact Contact Guarantee */
+.contact-guarantee {
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.guarantee-badge {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(135deg, #48bb78, #38a169);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+}
+
+.guarantee-badge i {
+    margin-right: 6px;
+    font-size: 0.8rem;
+}
+
+/* Ultra Compact Version - Even Smaller */
+.contact-methods.ultra-compact {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 12px;
+}
+
+.contact-methods.ultra-compact .contact-item {
+    padding: 15px 18px;
+    min-height: 65px;
+}
+
+.contact-methods.ultra-compact .contact-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+    margin-right: 12px;
+}
+
+.contact-methods.ultra-compact .contact-detail {
+    font-size: 0.9rem;
+}
+
+.contact-methods.ultra-compact .contact-label {
+    font-size: 0.75rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 40px 0;
+    }
+    
+    .contact-section .section-title {
+        font-size: 1.7rem;
+    }
+    
+    .contact-section .section-subtitle {
+        font-size: 1rem;
+    }
+    
+    .contact-methods {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 0 15px;
+    }
+    
+    .contact-item {
+        padding: 16px 18px;
+        min-height: 65px;
+    }
+    
+    .contact-guarantee {
+        margin-top: 25px;
+        padding: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-section .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .contact-item {
+        padding: 14px 16px;
+        min-height: 60px;
+    }
+    
+    .contact-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
+        margin-right: 12px;
+    }
+    
+    .contact-detail {
+        font-size: 0.85rem;
+    }
+    
+    .contact-label {
+        font-size: 0.7rem;
+    }
+    
+    .guarantee-badge {
+        font-size: 0.8rem;
+        padding: 6px 14px;
+    }
+}
+
+/* Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.contact-item {
+    animation: fadeInUp 0.4s ease-out;
+}
+
+.contact-item:nth-child(2) { animation-delay: 0.05s; }
+.contact-item:nth-child(3) { animation-delay: 0.1s; }
+.contact-item:nth-child(4) { animation-delay: 0.15s; }
+.contact-item:nth-child(5) { animation-delay: 0.2s; }
+.contact-item:nth-child(6) { animation-delay: 0.25s; }
