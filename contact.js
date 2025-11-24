@@ -2,26 +2,26 @@
 const planConfigs = {
     'Essentiel': {
         basePrice: 5000,
-        includedTests: 3,
-        includedGraphs: 5,
+        includedTests: 8,
+        includedGraphs: 8,
         includedData: 'small',
         features: [
             'Statistiques descriptives',
-            '3 tests statistiques inclus',
-            '5 graphiques inclus',
+            '8 tests statistiques inclus',
+            '8 graphiques inclus',
             '≤ 1000 observations',
             'Rapport d\'analyse complet'
         ]
     },
     'Avance': {
         basePrice: 9500,
-        includedTests: 8,
-        includedGraphs: 10,
+        includedTests: 12,
+        includedGraphs: 12,
         includedData: 'medium',
         features: [
             'Statistiques descriptives',
-            '8 tests statistiques inclus',
-            '10 graphiques inclus',
+            '12 tests statistiques inclus',
+            '12 graphiques inclus',
             '1001 - 5000 observations',
             'Rapport d\'analyse détaillé',
             'Analyses multivariées'
@@ -68,7 +68,7 @@ const pricingConfig = {
         express: 8000
     },
     reportTypePrices: {
-        word: 500,
+        word: 1000,
         latex: 0
     },
     presentationPrices: {
@@ -548,7 +548,7 @@ function isValidEmail(email) {
 
 // Redirect to home page
 function goHome() {
-    window.location.href = 'website/index.html';
+    window.location.href = 'index.html';
 }
 
 // Initialize the form
@@ -613,5 +613,28 @@ function printConfirmation() {
 
 function goHome() {
     window.location.href = '/'; // Adjust to your home page URL
+}
 
+
+function generateCaptcha() {
+    const operations = [
+        { type: 'addition', text: (a, b) => `Combien font ${a} + ${b} ?`, calc: (a, b) => a + b },
+        { type: 'subtraction', text: (a, b) => `Combien font ${a} - ${b} ?`, calc: (a, b) => a - b },
+        { type: 'multiplication', text: (a, b) => `Combien font ${a} × ${b} ?`, calc: (a, b) => a * b }
+    ];
+    
+    const operation = operations[Math.floor(Math.random() * operations.length)];
+    const num1 = Math.floor(Math.random() * 8) + 2; // 2-9
+    const num2 = Math.floor(Math.random() * 8) + 2; // 2-9
+    
+    // Pour la soustraction, s'assurer que le résultat est positif
+    if (operation.type === 'subtraction' && num1 < num2) {
+        [num1, num2] = [num2, num1]; // Échanger les nombres
+    }
+    
+    captchaAnswer = operation.calc(num1, num2);
+    
+    document.getElementById('captcha-question').textContent = operation.text(num1, num2);
+    document.getElementById('captcha').value = '';
+    document.getElementById('captcha-error').style.display = 'none';
 }
